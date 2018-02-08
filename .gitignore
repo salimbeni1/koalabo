@@ -1,8 +1,7 @@
-/img
+*~
+
+# Ignore heavy directories
 img/
-
 pdf/
-/pdf
-
 libraries/
-/libraries
+
