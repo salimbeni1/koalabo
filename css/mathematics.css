@@ -1,0 +1,173 @@
+header {
+    background-image: url(../img/booling.jpg);
+    height: 100vh;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -ms-flex-line-pack: center;
+    align-content: center;
+    text-align: center;
+    color: moccasin;
+}
+
+p {
+    padding: 10;
+}
+
+body {
+    margin: 0px;
+}
+
+body {
+    background-color: aliceblue;
+}
+
+#divPage4 {
+    width: 60%;
+    height: 400px;
+    margin-left: 20%;
+    margin-right: 20%;
+    background-color: rgba(1, 2, 3, 0.1);
+    word-wrap: break-word;
+}
+
+#spaceDiv {
+    height: 79vh;
+}
+
+#navPage4 {
+    position: relative;
+    padding: 1vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: distribute;
+    justify-content: space-around;
+}
+
+#navPage4 li {
+    background-color: teal;
+    padding: 3vh;
+    opacity: 0.7;
+    list-style-type: none;
+}
+
+#navPage4 li:hover {
+    background-color: teal;
+    padding: 3vh;
+    opacity: 1;
+}
+
+.navForClasse {
+    position: absolute;
+    height: 15vh;
+    width: 25%;
+    top: 73%;
+    left: 10%;
+    background-color: cadetblue;
+    border-radius: 4em;
+    text-align: center;
+    border: 2px dotted;
+    opacity: 0.5;
+    font-family: cursive;
+}
+
+#fr2 {
+    left: 38%
+}
+
+#fr3 { top:80%;
+    left: 66%
+}
+
+#fr2:hover {
+    background-color: mediumblue;
+    color: antiquewhite;
+    opacity: 0.8;
+}
+
+#fr3:hover {
+    background-color: green;
+    color: aliceblue;
+    opacity: 0.8;
+}
+
+#fr1:hover {
+    background-color: red;
+    color: aliceblue;
+    opacity: 0.8;
+}
+
+h4 {
+    font-family: monospace;
+}
+
+#homeR {
+    position: fixed;
+    width: 8%;
+    top: 2%;
+    left: 2%;
+}
+
+a,
+a:visited,
+a:hover,
+a:active {
+    color: inherit;
+}
+#fr46 {
+    top: 60%;
+    left:66%
+}
+
+#fr46:hover {
+    background-color: crimson;
+    opacity: 0.8;
+}
+@media (max-width: 767px) {
+    /* Selectors and styles affecting screens UP TO 767px (Tablet)
+    */
+    .navForClasse {
+        position: relative;
+        width: 90%;
+        top: 0;
+        left: 0;
+        height: 20%;
+        margin-top: 10%;
+        margin-left: 5%;
+        margin-right: 5%;
+        opacity: 1;
+        background-color: burlywood;
+    }
+    #fr2 {
+        left: 0;
+        background-color: darkcyan;
+    }
+    #fr3 {
+        left: 0;
+        background-color: coral;
+    }
+    #fr46 {
+        left: 0;
+        background-color: darkred;
+    }
+    header {
+        display: none;
+    }
+    #homeR {
+        display: none;
+    }
+}
+

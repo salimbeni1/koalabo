@@ -1,0 +1,235 @@
+@font-face {
+    font-family: myFirstFont;
+    src: url();
+    font-weight: bold;
+}
+
+body {
+    background-image: url(../img/cellule2.jpg);
+    width: 100%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
+}
+
+.disapear {
+    display: none;
+}
+
+#div3:hover .disapear {
+    display: initial;
+}
+
+.container {
+    position: relative;
+}
+
+.textbox:hover {
+    opacity: 0.4;
+}
+
+.text {
+    padding-top: 65px;
+}
+
+.textbox {
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    border-radius: 10px;
+    background-color: rgba(1, 1, 1, 0.75);
+    -webkit-box-shadow: 0px 0px 15px 2px rgba(255, 255, 255, .75);
+    box-shadow: 0px 0px 15px 2px rgba(255, 255, 255, .75);
+    -webkit-transition: all 0.7s ease;
+    transition: all 0.7s ease;
+}
+
+hr {
+    color: brown;
+    padding-bottom: 10;
+    border-color: coral;
+}
+
+#div2 {
+    position: static;
+}
+
+#div3 {
+    opacity: 0.85;
+    position: absolute;
+    z-index: 100;
+    width: 70%;
+    margin-left: 15%;
+    padding: 1em;
+    padding-bottom: 0em;
+    margin-top: 15px;
+    font-family: monospace;
+}
+
+.centreEngrenage {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 300;
+}
+
+.engrenage {
+    position: relative
+}
+
+.navIndex {
+    position: absolute;
+    background-color: oldlace;
+    left: 15%;
+    width: 70%;
+    top: 50%;
+    padding: 1em;
+    padding-bottom: 3.3em;
+    padding-top: 2.3em;
+    text-align: center;
+    text-decoration: none;
+    color: black;
+    opacity: 0.5;
+    transition: height 3s ease-in-out;
+    -webkit-transition: height 3s ease-in-out;
+    display: inline-block;
+}
+
+#other {
+    top: 67%;
+}
+
+#math {
+    top: 25%
+}
+
+.navIndex:hover div {}
+
+
+/*
+#math:hover div {
+    position: absolute;
+    display: block;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: -100;
+    background-image: url(cellule.jpg);
+    width: 100%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:center;
+    background-size: cover;
+}
+
+#science:hover div {
+    position: absolute;
+    display: block;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: -100;
+    background-image: url(microscopy.jpg);
+    width: 100%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:center;
+    background-size: cover;
+}
+
+#other:hover div {
+    position: absolute;
+    top: 0; bottom: 0; left: 0; right: 0;
+    z-index: -100;
+    background-image: url(cellule.jpg);
+    width: 100%;
+    margin: 0 auto;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position:center;
+    background-size: cover;
+}
+*/
+
+#nevDiv {
+    background-color: aliceblue;
+    opacity: 0.86;
+    height: 100%;
+    width: 70%;
+    margin-right: 15%;
+    margin-left: 15%
+}
+
+#div4 {
+    background-color: aquamarine;
+    opacity: 0.9;
+    width: 70%;
+    height: 100%;
+    margin-left: 15%;
+    margin-right: 15%;
+    padding-top: 40%
+}
+
+#science:hover {
+    background-image: url(../img/cellule.jpg);
+    color: black;
+    opacity: 0.9;
+}
+
+#other:hover {
+    background-image: url(../img/microscopy.jpg);
+    color: aliceblue;
+    opacity: 0.9;
+}
+
+#math:hover {
+    background-image: url(../img/cellule3.png);
+    color: black;
+    opacity: 0.9;
+}
+
+.navIndex h1 {
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+
+#science {
+    top: 46%;
+}
+
+#indexfooter {
+    position: absolute;
+    height: 55px;
+    width: 100%;
+    top: 140%;
+    background-color: honeydew;
+    opacity: 0.8;
+    text-align: center;
+    padding-top: 10px;
+    margin-top: 10px;
+}
+
+#indexfooter:hover {
+    background-color: aquamarine;
+}
+
+@media (max-width: 767px) {
+    /* Selectors and styles affecting screens UP TO 767px (Tablet)
+    */
+    body {
+        background-image: url(../img/cellule.jpg);
+    }
+    .navIndex {
+        position: absolute;
+        background-color: brown;
+        color: aliceblue;
+        left: 0;
+        width: 100%;
+        top: 0;
+        padding: 0;
+    }
+}
