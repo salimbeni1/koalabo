@@ -52,7 +52,8 @@ background-color: palegreen;
 .hoverInfo:hover .divEnBas {
     //background-color: yellowgreen;
     height: 100%;
-    opacity: 0.6;
+    opacity:0.7;
+    //text-transform: lowercase;
 
 }
 
@@ -70,5 +71,44 @@ background-color: palegreen;
 }
 
 #test011 {
-    background: url('../img/cellule3.png') no-repeat center center;
+    background: url('../img/cellule2.jpg') no-repeat center center;
+}
+
+#test012 {
+     background: url('../img/cellule.jpg') no-repeat center center;
+}
+
+.partieCache2 {
+    display: none;
+    position: absolute;
+ bottom: 0;
+height: 30%;
+background-color: transparent;
+    width: 100%;
+
+}
+
+.hoverInfo:hover .partieCache2 {
+    display: block;
+    height: 100%;
+    opacity:;
+
+}
+
+.titreDiv {
+     position: absolute;
+     bottom: 0;
+    height: 30%;
+    width: 100%;
+}
+
+.hoverInfo:hover .titreDiv {
+   display: none;
+
+}
+
+hr {
+    color: brown;
+    padding-bottom: 10;
+    border-color: black;
 }
