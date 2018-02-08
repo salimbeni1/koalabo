@@ -16,6 +16,7 @@ header {
     margin: 10px;
     text-align: center;
     padding: 10px;
+    position: relative;
 }
 
 #englobeur {
@@ -31,4 +32,43 @@ header {
     width: auto;
     background-color: beige;
     opacity: 0.8;
+}
+
+.divEnBas {
+    position: absolute;
+ bottom: 0;
+height: 30%;
+background-color: palegreen;
+    width: 100%;
+    opacity: 0.9;
+}
+
+.noPadding {
+    padding: 0;
+    height: 220px;
+    width: 220px;
+}
+
+.hoverInfo:hover .divEnBas {
+    //background-color: yellowgreen;
+    height: 100%;
+    opacity: 0.6;
+
+}
+
+.hoverInfo:hover .partieCache {
+    display: block;
+
+}
+
+.partieCache {
+    display: none;
+}
+
+#test010 {
+    background: url('../img/cellule3.png') no-repeat center center;
+}
+
+#test011 {
+    background: url('../img/cellule3.png') no-repeat center center;
 }
