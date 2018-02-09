@@ -59,11 +59,15 @@ var fr;
 var particles = [];
 var flowField;
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-    createCanvas(1400,1400);
+     createCanvas(windowWidth, windowHeight);
     cols = floor(width / scl);
     rows = floor(height/ scl);
-    fr  = createP('');
+    //fr  = createP('');
 
     flowField = new Array(cols*rows);
 
@@ -108,7 +112,7 @@ function draw() {
     particles[i].edges();
     }
 
-    fr.html(floor(frameRate()));
+    //fr.html(floor(frameRate()));
 }
 
 

@@ -31,7 +31,7 @@ header {
     height: 50%;
     width: auto;
     background-color: beige;
-    opacity: 0.8;
+    opacity: 0.9;
 }
 
 .divEnBas {
@@ -114,3 +114,13 @@ hr {
 }
 
 
+
+#limitaeur {
+    position: absolute;
+    z-index: 10;
+}
+
+canvas {
+    position: fixed;
+    z-index: 0;
+}
