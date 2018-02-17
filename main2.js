@@ -59,9 +59,13 @@ var fr;
 var particles = [];
 var flowField;
 
+function windowResized() {
+  resizeCanvas(windowWidth, windowHeight);
+}
+
 function setup() {
-    createCanvas(400,400);
-    background(255);
+     createCanvas(windowWidth, windowHeight);
+    //background(255);
     cols = floor(width / scl);
     rows = floor(height/ scl);
     fr  = createP('');
@@ -75,7 +79,7 @@ function setup() {
 }
 
 function draw() {
-    background(255);
+   // background(255);
     var xoff = 0;
 
     for(var x = 0;x < cols ;x++)
@@ -90,7 +94,7 @@ function draw() {
            flowField[index] = v;
            yoff += inc;
 
-
+            /*
            stroke(0,50);
            push();
            translate(x*scl, y*scl);
@@ -98,6 +102,7 @@ function draw() {
            rotate(v.heading());
            line(0,0,scl,0);
            pop();
+           */
 
 
 
