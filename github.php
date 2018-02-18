@@ -11,6 +11,10 @@
 <body>
     <script src=""></script>
     <?php
+
+    $output = shell_exec("ls");
+    echo "<pre>$output</pre>";
+
     echo "git pull will be executed";
     'git pull';
     ?>
