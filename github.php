@@ -10,7 +10,7 @@
 
 <body>
     <script src=""></script>
-    <?php
+    <?php -a
 
     $output = shell_exec("ls");
     echo "<pre>$output</pre>";
