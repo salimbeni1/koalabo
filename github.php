@@ -15,6 +15,12 @@
     $output = shell_exec("ls");
     echo "<pre>$output</pre>";
 
+    $old_path = getcwd();
+    echo "old_path :  $old_path";
+    //chdir('/my/path/');
+    //$output = shell_exec('');
+    //chdir($old_path);
+
     echo "git pull will be executed";
     'git pull';
     ?>
