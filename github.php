@@ -15,6 +15,24 @@
     $output = shell_exec("ls");
     echo "<pre>$output</pre>";
 
+     $output = shell_exec("tree");
+    echo "<pre>$output</pre>";
+
+     $output = shell_exec("ls --help");
+    echo "<pre>$output</pre>";
+
+     $output = shell_exec("free -m");
+    echo "<pre>$output</pre>";
+
+    $output = shell_exec("sudo dmidecode -t 17");
+    echo "<pre>$output</pre>";
+
+    $output = shell_exec("cat /proc/version");
+    echo "<pre>$output</pre>";
+
+    $output = shell_exec("git status");
+    echo "<pre>$output</pre>";
+
     $old_path = getcwd();
     echo "old_path :  $old_path";
     //chdir('/my/path/');
