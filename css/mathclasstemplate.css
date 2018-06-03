@@ -27,7 +27,7 @@ body {
     background-color: orange;
     z-index: 100;
     top: 40%;
-    text-align: center;
+    text-align:center;
     width: 100%;
     -webkit-transition: all 0.7s ease-out;
     transition: all 0.7s ease-out;
@@ -128,7 +128,7 @@ a:active {
 }
 
 @media (max-width: 767px) {
-    /* Selectors and styles affecting screens UP TO 767px (Tablet)
+    /* Selectors and styles affecting screens UP TO 767px (Tablet) 
     */
     .scrollvresletop {
         width: 100%;

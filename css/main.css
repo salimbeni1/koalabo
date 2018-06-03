@@ -218,7 +218,7 @@ hr {
 }
 
 @media (max-width: 767px) {
-    /* Selectors and styles affecting screens UP TO 767px (Tablet)
+    /* Selectors and styles affecting screens UP TO 767px (Tablet) 
     */
     body {
         background-image: url(../img/cellule.jpg);

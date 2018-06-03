@@ -12,10 +12,6 @@
     <script src=""></script>
     <?php
     echo "My first PHP script!";
-
-    $output = shell_exec("ls");
-    echo "<pre>$output</pre>";
-
     ?>
 </body>
 
