@@ -1,170 +1,40 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
     <meta charset="utf-8">
-    <title>MATH</title>
-
-    <link rel="stylesheet" href="css/mathNewTemplate.css">
-    <meta name="description" content="cour de math pour la section francophone">
-    <meta name="keywords" content="koalabo,koalabo.eu,mathematique,ecole europenne">
-    <meta name="author" content="Salami Esteban">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH 2FR</title>
+    <link rel="stylesheet" href="css/mathNewTemplate.css">
+    <script src="scripts/boxMaker.js"></script>
+    <script src="listeCours/Fr2_Math.js"></script>
+
 
     <!-- P5 libraires -->
     <script src="libraries/p5.js" type="text/javascript"></script>
     <script src="libraries/p5.dom.js" type="text/javascript"></script>
-    <script src="libraries/p5.sound.js" type="text/javascript"></script>
-    <script src="main.js" type="text/javascript"></script>
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113775869-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113775869-1');
-    </script>
-
+    <script src="scripts/main.js" type="text/javascript"></script>
+   
+     <style type="text/css">
+         canvas {
+             position: fixed;
+             top: 0;
+             z-index: -10;
+         }
+    </style>
 
 </head>
 
-
-
-
-
 <body style="margin: 0;">
-    <script src=""></script>
+    
+     
 
-    <div id="limitaeur">
+    <div id="2frMath">
 
-        <header>
-            <br> MATHS 2FR
-        </header>
-
-        <div id="englobeur">
-
-
-
-
-
-
-            <div class="sousDivision noPadding hoverInfo " style="background: url(img/programme.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Programme </div>
-                <div class="partieCache2">
-                    <br><a href="pdf/math2fr/2fr%20Pg%20maths%20eleves.pdf"> Programme </a>
-
-                </div>
-
-            </div>
-
-
-            <div class="sousDivision noPadding hoverInfo " style="background: url(img/mathGeneral.jpg) center;background-size: cover; ">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Regles de calcul </div>
-                <div class="partieCache2">
-                    <br> Regles de calculs <br>
-                    <hr><br><a href="pdf/math2fr/2fr%20-%20activit%C3%A9%201.pdf"> Bilan calcul</a>
-                    <br> <a href="pdf/math2fr/2fr%20s%C3%A9rie%201%20priorit%C3%A9s%20op%C3%A9ratoires.pdf"> Priorités 1 </a> --
-
-                    <a href="pdf/math2fr/2fr%20s%C3%A9rie%202%20priorit%C3%A9s%20op%C3%A9ratoires%20et%20situations.pdf"> priorités 2</a>
-                    <br> <a href="pdf/math2fr/2fr%20s%C3%A9rie%203%20calcul%20astucieux%20distributivit%C3%A9.pdf">Priorités 3</a> -- <a href="pdf/math2fr/s%C3%A9rie%202%20priorit%C3%A9s%20op%C3%A9ratoires%20et%20situations.pdf">Priorités 4</a>
-                    <br> <a href="pdf/math2fr/entrainementcorrigés.pdf"> Distributivité /factorisation corrigés</a>
-
-                </div>
-
-            </div>
-
-            <div class="sousDivision noPadding hoverInfo " style="background: url(img/z.jpg) no-repeat center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> les Relatifs </div>
-                <div class="partieCache2">
-                    <br> les Relatifs <br>
-                    <hr><br> <a href="pdf/math2fr/2fr%20cours%20les%20relatifs.pdf">cours</a><br>
-                </div>
-
-            </div>
-
-            <div class="sousDivision noPadding hoverInfo " style="background: url(img/nombres.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> les Puissances </div>
-                <div class="partieCache2">
-                    <br> <a href="pdf/math2fr/puissances.pdf">les puissances</a> <br>
-
-                </div>
-
-            </div>
-
-            <div class="sousDivision noPadding hoverInfo " style="background: url(img/achblog.com-Fleurs-291025.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Géométrie </div>
-                <div class="partieCache2">
-                    
-
-                </div>
-
-            </div>
-
-  <div class="sousDivision noPadding hoverInfo " style="background: url(img/lego.JPG) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> le
-                    Calcul Fractionnaire</div>
-                <div class="partieCache2">
-                  <hr><br> <a href="pdf/math2fr/calcul%20fractionnaire.pdf"> Le calcul fractionnaire </a><br>
-                </div>
-       </div>
-     <div class="sousDivision noPadding hoverInfo " style="background: url(img/mathnb.jpg) center;background-size: cover;">
-
-         
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> le
-                    Calcul Littéral</div>
-                <div class="partieCache2">
-                <br> Le calcul littéral <br>
-                    <hr><br> <a href="https://education.francetv.fr/matiere/mathematiques/sixieme/video/petits-contes-mathematiques-le-x">Petit conte: le X</a><br>
-                     <hr><br> <a href="pdf/math2fr/calclit.pdf">  <br> Le Cours <br></a>        
-                   
-                    <hr><br> <a href="pdf/math2fr/exolit.pdf"> Les Exercices </a> <br>  
-
-                </div> 
-      
-
-           
-
-
-
-
-
-
-        </div>
-
+        <script>
+            creazione(Fr2_Math, "2frMath")
+        </script>
     </div>
 
 
-
-
 </body>
-
-
-
-
-
-
-
-
-
-
 </html>

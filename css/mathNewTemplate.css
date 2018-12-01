@@ -1,14 +1,3 @@
-
-div {
-}
-
-header {
-    background-color: transparent;
-    color: ;
-    height: 60px;
-    text-align: center;
-}
-
 .sousDivision {
     height: 200px;
     width: 200px;
@@ -21,7 +10,7 @@ header {
 
 #englobeur {
     display: flex;
-  flex-wrap: wrap;
+    flex-wrap: wrap;
     justify-content: center;
     margin: 10px;
 
@@ -36,9 +25,9 @@ header {
 
 .divEnBas {
     position: absolute;
- bottom: 0;
-height: 30%;
-background-color: white;
+    bottom: 0;
+    height: 30%;
+    background-color: white;
     width: 100%;
     opacity: 0.9;
 }
@@ -52,9 +41,7 @@ background-color: white;
 .hoverInfo:hover .divEnBas {
     //background-color: yellowgreen;
     height: 100%;
-    opacity:0.7;
-    //text-transform: lowercase;
-
+    opacity: 0.7; //text-transform: lowercase;
 }
 
 .hoverInfo:hover .partieCache {
@@ -66,62 +53,36 @@ background-color: white;
     display: none;
 }
 
-#test010 {
-    background: url('../img/cellule3.png') no-repeat center center;
-}
 
-#test011 {
-    background: url('../img/cellule2.jpg') no-repeat center center;
-}
-
-#test012 {
-     background: url('../img/cellule.jpg') no-repeat center center;
-}
 
 .partieCache2 {
     display: none;
     position: absolute;
- bottom: 0;
-height: 30%;
-background-color: transparent;
+    bottom: 0;
+    height: 30%;
+    background-color: transparent;
     width: 100%;
-     cursor: pointer;
+    cursor: pointer;
 
 }
 
 .hoverInfo:hover .partieCache2 {
-    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
     height: 100%;
-    opacity:;
+    opacity: ;
 
 }
 
 .titreDiv {
-     position: absolute;
-     bottom: 0;
+    position: absolute;
+    bottom: 0;
     height: 30%;
     width: 100%;
 }
 
 .hoverInfo:hover .titreDiv {
-   display: none;
+    display: none;
 
-}
-
-hr {
-    color: brown;
-    padding-bottom: 10;
-    border-color: black;
-}
-
-
-
-#limitaeur {
-    position: absolute;
-    z-index: 10;
-}
-
-canvas {
-    position: fixed;
-    z-index: 0;
 }

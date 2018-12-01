@@ -1,174 +1,41 @@
 <!DOCTYPE html>
 <html lang="">
-
 <head>
     <meta charset="utf-8">
-    <title>MATH</title>
-
-    <link rel="stylesheet" href="css/mathNewTemplate.css">
-    <meta name="description" content="cour de math pour la section francophone">
-    <meta name="keywords" content="koalabo,koalabo.eu,mathematique,ecole europenne">
-    <meta name="author" content="Salami Esteban">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MATH 3FR</title>
+    <link rel="stylesheet" href="css/mathNewTemplate.css">
+    <script src="scripts/boxMaker.js"></script>
+    <script src="listeCours/Fr3_Math.js"></script>
+
 
     <!-- P5 libraires -->
     <script src="libraries/p5.js" type="text/javascript"></script>
     <script src="libraries/p5.dom.js" type="text/javascript"></script>
-    <script src="libraries/p5.sound.js" type="text/javascript"></script>
-    <script src="main.js" type="text/javascript"></script>
-
-
-
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-113775869-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-
-        function gtag() {
-            dataLayer.push(arguments);
-        }
-        gtag('js', new Date());
-
-        gtag('config', 'UA-113775869-1');
-    </script>
-
+    
+    <script src="scripts/main.js" type="text/javascript"></script>
+   
+     <style type="text/css">
+         canvas {
+             position: fixed;
+             top: 0;
+             z-index: -10;
+         }
+    </style>
 
 </head>
 
-
-
-
-
 <body style="margin: 0;">
-    <script src=""></script>
+    
+     
 
-    <div id="limitaeur">
+    <div id="3frMath">
 
-        <header>
-           <br>
-            MATH 3FR
-        </header>
-
-        <div id="englobeur">
-
-
-
-
-            <div  class="sousDivision noPadding hoverInfo " style="background: url(img/programme.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> le Programme </div>
-                <div class="partieCache2">
-                    <br> le Programme <br>
-                    <a href="pdf/math3fr/3fr%20Pg%20maths%20eleves.pdf">
-                    <br>Le programme <br>
-                </a>
-                </div>
-
-            </div>
-
-            <div  class="sousDivision noPadding hoverInfo " style="background: url(img/nombres.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> les Nombres </div>
-                <div class="partieCache2">
-                    <br> les Nombres <br>
-                    <hr> <a href="https://www.youtube.com/watch?v=kL-eMNZiARM">
-                    <br>Video : les ensembles de nombres <br>
-                </a>
-
-                <a href="pdf/math3fr/ch1les%20nombres.pdf">
-                        <br>Les nombres<br> </a>
-                <a href="https://sciencetonnante.wordpress.com/2012/02/20/0-999999-le-nombre-qui-nexiste-pas-vraiment/">
-                     <br> Récré: 0,999999 existe-t-il?...<br>
-                </a>
-
-                <a href="pdf/math3fr/3fr%20-%20activit%C3%A9%201.pdf">
-                    <br> Exercices I
-                </a>...
-                 <a href="pdf/math3fr/giulia.pdf">Exercices II<br>
-                </a>
-
-                </div>
-
-            </div>
-
-            <div  class="sousDivision noPadding hoverInfo " style="background: url(img/compas.jpg) no-repeat center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Geometrie </div>
-                <div class="partieCache2">
-                    <br> Geometrie <br>
-                    <hr> <a href="pdf/math3fr/lexique-geometrie.pdf"> <li> Lexique de Géométrie</li></a>
-                </div>
-
-                </div>
-
-
-
-            <div  class="sousDivision noPadding hoverInfo " style="background: url(img/mathGeneral2.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Calcul litteral </div>
-                <div class="partieCache2">
-                    <br> Calcul litteral <br>
-                    <hr> <a href="pdf/math3fr/calcul litteral.pdf"> <br> Cours <br></a><br> exercices <br>
-                </div>
-
-            </div>
-            
-            
-             <div  class="sousDivision noPadding hoverInfo " style="background: url(img/pytha.JPG) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Pythagore </div>
-                <div class="partieCache2">
-                    <br> Pythagore <br>
-                    <hr> <a href=" https://www.youtube.com/watch?v=LJOSl4jt2jk"> <br> Petit conte <br></a>
-                </div>
-           
-            
-            
-            </div>
-
-  <div  class="sousDivision noPadding hoverInfo " style="background: url(img/booling.jpg) center;background-size: cover;">
-
-                <div class="divEnBas"></div>
-                <div class="titreDiv"> <br> Probabilités </div>
-                <div class="partieCache2">
-                    <br> Probabilités <br>
-                    <hr> <a href="pdf/math3fr/probabilites.pdf"> <br> Cours <br></a>
-                </div>
-      </div>
-
-
-
-
-
-
-
-        </div>
-
+        <script>
+            creazione(Fr3_Math, "3frMath")
+        </script>
     </div>
 
 
-
-
 </body>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </html>
