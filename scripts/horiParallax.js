@@ -37,11 +37,21 @@ function createMovable(color="white",h=200,w=200,t=pt,l=pl) {
 var test = createMovable("red",100,100,0,0);
 var test2 = createMovable("blue");
 var test3 = createMovable("yellow");
-var sep1 = createSep("green");
-var sep2 = createSep("violet");
 var tes2t = createMovable("red");
 var test22 = createMovable("blue");
 var test23 = createMovable("yellow");
+
+
+var an1 = document.createElement("a");
+an1.href = "sci.html";
+var an2 = document.createElement("a");
+an2.href = "math.html";
+
+var sep1 = createSep("green");
+var sep2 = createSep("violet");
+
+an1.append(sep1);
+an2.append(sep2);
 
 
 
@@ -70,7 +80,7 @@ window.addEventListener("mousemove", function(e) {
 
 
 
-page.append(sep1,sep2);
+page.append(an1,an2);
 sep1.append(test,test2,test3);
 sep2.append(tes2t,test22,test23);
 
