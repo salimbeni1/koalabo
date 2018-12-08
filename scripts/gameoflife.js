@@ -3,7 +3,7 @@
 
 let resolution = 10;
 let width = window.innerWidth;
-let height = window.innerHeight;
+let height = window.innerHeight+100;
 
 
 let grid = new Array(Math.floor(width/resolution));
@@ -38,7 +38,7 @@ function nbvoisins(i , j) {
 } 
 
 function setup() {
-    createCanvas(width, height+100);
+    createCanvas(width, height);
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)
             grid[i][j] = Math.floor(random(1)+0.5);
