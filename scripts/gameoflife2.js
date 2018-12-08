@@ -35,7 +35,7 @@ function nbvoisins(i , j) {
 } 
 
 function setup() {
-    createCanvas(width, height);
+    createCanvas(width, height+100);
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)
             grid[i][j] = Math.floor(random(1)+0.5);

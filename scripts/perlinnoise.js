@@ -3,13 +3,17 @@ function Particle() {
     this.vel = createVector(0,0);
     this.acc = createVector(0,0);
     this.maxspeed = 4;
+    this.old = createVector(0,0);
 
     this.update = function()
     {
+     this.old.x = this.pos.x;
+     this.old.y = this.pos.y;
      this.vel.add(this.acc);
      this.vel.limit(this.maxspeed);
      this.pos.add(this.vel);
      this.acc.mult(0);
+     if(this.old.x == this.pos.x && this.old.x == this.pos.y) this.pos = createVector(random(width),random(height));
     }
 
     this.follow = function(vectors)
@@ -60,11 +64,11 @@ var particles = [];
 var flowField;
 
 function windowResized() {
-  resizeCanvas(windowWidth, windowHeight);
+  resizeCanvas(windowWidth, windowHeight+100);
 }
 
 function setup() {
-     createCanvas(windowWidth, windowHeight);
+     createCanvas(windowWidth, windowHeight+100);
     cols = floor(width / scl);
     rows = floor(height/ scl);
     //fr  = createP('');
