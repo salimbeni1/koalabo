@@ -35,6 +35,8 @@ function nbvoisins(i , j) {
 } 
 
 function setup() {
+    
+    frameRate(80);
     createCanvas(width, height);
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)

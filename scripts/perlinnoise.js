@@ -32,8 +32,8 @@ function Particle() {
 
     this.show = function()
     {
-     stroke(0,5);
-     strokeWeight(4);
+     stroke(10,2);
+     strokeWeight(10);
      point(this.pos.x,this.pos.y);
     }
 

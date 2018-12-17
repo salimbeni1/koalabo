@@ -1,7 +1,7 @@
 
 
 
-let resolution = 10;
+let resolution = 18;
 let width = window.innerWidth;
 let height = window.innerHeight+100;
 
@@ -38,6 +38,9 @@ function nbvoisins(i , j) {
 } 
 
 function setup() {
+    
+    frameRate(10);
+    
     createCanvas(width, height);
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)
