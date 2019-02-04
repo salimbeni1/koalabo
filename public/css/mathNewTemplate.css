@@ -1,3 +1,13 @@
+/*
+@import url('../fonts/Signika/Signika-SemiBold.ttf');
+@import url('../fonts/Signika/Signika-Bold.ttf');
+@import url('../fonts/Signika/Signika-Regular.ttf');
+@import url('../fonts/Signika/Signika-Light.ttf');
+*/
+
+@import url('https://fonts.googleapis.com/css?family=Signika');
+
+
 .sousDivision {
     height: 200px;
     width: 200px;
@@ -6,6 +16,9 @@
     text-align: center;
     padding: 10px;
     position: relative;
+    border-radius: 6px;
+    overflow:hidden;
+    font-family: 'Signika', sans-serif;
 }
 
 #englobeur {
@@ -30,6 +43,7 @@
     background-color: white;
     width: 100%;
     opacity: 0.9;
+    transition: all 0.2s;
 }
 
 .noPadding {
@@ -39,9 +53,9 @@
 }
 
 .hoverInfo:hover .divEnBas {
-    //background-color: yellowgreen;
+    
     height: 100%;
-    opacity: 0.7; //text-transform: lowercase;
+    opacity: 0.9; 
 }
 
 .hoverInfo:hover .partieCache {
@@ -50,13 +64,15 @@
 }
 
 .partieCache {
+    transition: all 0.2s;
     display: none;
 }
 
 
 
 .partieCache2 {
-    display: none;
+    
+    visibility: hidden;
     position: absolute;
     bottom: 0;
     height: 30%;
@@ -67,15 +83,17 @@
 }
 
 .hoverInfo:hover .partieCache2 {
+    transition: all 0.4s ;
+    visibility: visible;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     height: 100%;
-    opacity: ;
 
 }
 
 .titreDiv {
+    transition: all 0.2s ;
     position: absolute;
     bottom: 0;
     height: 30%;
