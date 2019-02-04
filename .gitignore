@@ -1,3 +1,9 @@
+# to heavy to push directories
+# public/img/
+# public/uploads/
+# public/pdf/
+
+
 # Logs
 logs
 *.log
