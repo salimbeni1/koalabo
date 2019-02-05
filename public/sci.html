@@ -4,16 +4,40 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SCI_</title>
-    <link rel="stylesheet" href="css/sousTitre.css">
     <link rel="stylesheet" href="css/mathNewTemplate.css">
-    <script src="scripts/boxMaker.js">
+    <script src="scripts/boxMaker.js"></script>
     </script>
+
+    <style>
+    
+    @font-face {
+        font-family: 'ocra';
+        src: /*url('myfont.woff') format('woff'),  Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
+             url('fonts/OCRAEXT.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
+    }  
+
+    .soustitre {
+        color : grey;
+        text-align: center;
+        font-size: 100px;
+        margin-top: 40px;
+        
+
+
+    }
+    
+    </style>
     
 
 
 </head>
 
-<body style="margin: 0; height: 2000px;">
+<body style="margin: 0; height: 2000px;font-family: 'ocra';">
+    <header style = "text-align: center;font-size: 200px;">
+
+        SCIENCES
+
+    </header>
 
 
     
@@ -22,9 +46,11 @@
     
 
 
-    <div id="1fr">
-        <div class="sous-titre"> 1 fr </div>
+    <div class = "soustitre">
+        1 fr 
     </div>
+
+
     <div id="fr1_anchor">
         <script>
             creazione("/listeCours/Fr1_SCI.JSON", "fr1_anchor");
@@ -33,10 +59,12 @@
 
 
 
-
-    <div id="2fr">
-        <div class="sous-titre"> 2 fr </div>
+    
+    <div class = "soustitre">
+         2 fr
     </div>
+
+
     <div id="fr2_anchor">
         <script>
             creazione("/listeCours/Fr2_SCI.JSON", "fr2_anchor");
@@ -47,9 +75,11 @@
 
 
 
-    <div id="3fr">
-        <div class="sous-titre"> 3 fr </div>
+    <div class="soustitre">
+        3 fr 
     </div>
+
+
     <div id="fr3_anchor">
         <script>
             creazione("/listeCours/Fr3_SCI.JSON", "fr3_anchor");
@@ -59,7 +89,5 @@
 
 
 </body>
-
-<script src="scripts/parallax.js"></script>
     
 </html>
