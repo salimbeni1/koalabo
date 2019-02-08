@@ -14,6 +14,9 @@ var server = app.listen(3000, x => console.log("listening ..."));
 // make the folder public the main site
 app.use(express.static("public"));
 
+
+//////////////////////////////////////////////////////////////////////////////////////
+
 // what to do during a POST request
 app.post("/upload",(req,res) => {
     upload(req,res, err => {
@@ -25,6 +28,67 @@ app.post("/upload",(req,res) => {
     })
 });
 
+app.post("/uploadMod" , (req,res) => {
+    upload(req, res , err => {
+        if(err) console.log([err]);
+        else {
+            console.log([req.body, req.files]);
+            updatecourses(req);
+
+            res.end("SUBMISSION COMPLETED ;");
+        }
+    })
+})
+
+
+//////////////////////////////////////////////////////////////////////////////////
+// update the json files that need to be modified
+
+function updatecourses(req){
+
+    console.log("updating");
+    var classname = "public/listeCours/"+req.body.classname+".JSON";
+    var data = JSON.parse(fs.readFileSync(classname));
+
+    var position = 0;
+    position = data.findIndex(el => el.titre == req.body.coursename);
+    
+    var newdata = data.filter(el => el.titre != req.body.coursename);
+
+    var ini = {
+        background : req.body.image,
+        titre : req.body.coursename,
+        links : []
+    }
+
+    var cnt = 0;
+
+    
+    if(Array.isArray(req.body.titreli)){
+        req.body.titreli.forEach(el => {
+            ini.links.push({
+                titre : el,
+                link : req.body.pathli[cnt]
+            })
+            cnt += 1;
+        });
+    }else {
+        ini.links.push({
+            titre : req.body.titreli,
+            link : req.body.pathli
+        })
+    }
+
+    newdata.splice(position,0,ini);
+    
+    fs.writeFileSync(classname,JSON.stringify(newdata));
+
+
+}
+
+
+
+////////////////////////////////////////////////////////////////////////////////////
 
 // get the date recieved in (req) and push it to the appropriate JSON file
 function getnewdata(req) {
@@ -57,6 +121,11 @@ function getnewdata(req) {
     fs.writeFileSync(classname,JSON.stringify(data));
 }
 
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////
 
 // Multer setup
 var Storage = multer.diskStorage({
