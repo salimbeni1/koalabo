@@ -144,7 +144,7 @@ select3.onchange = () => {
 
     // display all the links of that course
 
-    temp.find(el => el.titre == select3.value).links.forEach(el => {
+    temp.find(el => el.titre == select3.value).links.forEach((el, index) => {
 
         var eng = document.createElement("div");
         eng.className = "deletable4";
@@ -160,8 +160,10 @@ select3.onchange = () => {
         inputPath.value = el.link;
 
         var inputFile = document.createElement("input");
-        inputFile.name = "fileli";
+        inputFile.name = index;
         inputFile.type = "file";
+
+       
 
 
         eng.append(inputTitre,inputPath,inputFile);

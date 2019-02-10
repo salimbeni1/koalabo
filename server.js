@@ -79,7 +79,17 @@ function updatecourses(req){
         })
     }
 
+    // pour tout les req.files put them to their index ==> files.nameinpiut
+
+    req.files.forEach(el => {
+        // substr(6) to remove public from directory
+        ini.links[parseInt(el.fieldname)].link = el.path.substr(6);
+    });
+
+    
+
     newdata.splice(position,0,ini);
+
     
     fs.writeFileSync(classname,JSON.stringify(newdata));
 
