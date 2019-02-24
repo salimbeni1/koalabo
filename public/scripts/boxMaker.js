@@ -5,6 +5,12 @@ var no_background = [
 ];
 
 
+
+/**
+ * 
+ * @param {*} filename 
+ * @param {*} mainDivID 
+ */
 function creazione(filename, mainDivID) {
 
     var data;

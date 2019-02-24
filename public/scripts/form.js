@@ -183,7 +183,7 @@ select3.onchange = () => {
     document.querySelectorAll('.deletable4').forEach(el => el.remove());
 
     // the selected module
-    var moduleSelected = temp.find(el => el.titre == select3.value).visibility;
+    var moduleSelected = temp.find(el => el.titre == select3.value);
 
     // image to change the path
     var imageinput = document.createElement("input");

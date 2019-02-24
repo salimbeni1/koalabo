@@ -15,9 +15,13 @@ var server = app.listen(3000, x => console.log("listening ..."));
 app.use(express.static("public"));
 
 
-//////////////////////////////////////////////////////////////////////////////////////
 
-// what to do during a POST request
+
+
+
+// what to do during a POST request :
+
+
 app.post("/upload",(req,res) => {
     upload(req,res, err => {
         if(err) console.log([err,req.files]);
@@ -27,6 +31,7 @@ app.post("/upload",(req,res) => {
         }
     })
 });
+
 
 app.post("/uploadMod" , (req,res) => {
     upload(req, res , err => {
@@ -41,9 +46,13 @@ app.post("/uploadMod" , (req,res) => {
 })
 
 
-//////////////////////////////////////////////////////////////////////////////////
-// update the json files that need to be modified
 
+
+////////////////////////////////////////////////////////////////////////////////
+//       UPDATE EXISTING COURSE
+////////////////////////////////////////////////////////////////////////////////
+
+// update the json files that need to be modified
 function updatecourses(req){
 
     console.log("updating");
@@ -101,9 +110,14 @@ function updatecourses(req){
 
 
 
-////////////////////////////////////////////////////////////////////////////////////
 
-// get the date recieved in (req) and push it to the appropriate JSON file
+
+
+////////////////////////////////////////////////////////////////////////////////
+//        CREATE NEW COURSE
+////////////////////////////////////////////////////////////////////////////////
+
+// get the data recieved in (req) and push it to the appropriate JSON file
 function getnewdata(req) {
     var ini = {
         background : "",
@@ -141,8 +155,11 @@ function getnewdata(req) {
 
 
 ////////////////////////////////////////////////////////////////////////////////
+//    MULTER SETUP
+////////////////////////////////////////////////////////////////////////////////
 
-// Multer setup
+
+// where to store files when they are send by POST
 var Storage = multer.diskStorage({
     destination: function(req,file,callback) {
         if(file.mimetype.slice(0,5) == "image")
