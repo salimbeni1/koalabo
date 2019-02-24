@@ -40,6 +40,7 @@ function addoption(name, selecteur, classID, optionalSelected) {
  * form to create an entire new course
  */
 var form = document.createElement("form");
+form.className = "";
 form.style.cssText = 
         "display : flex;"
         +"flex-direction : column;";
@@ -113,6 +114,7 @@ form.append(select,input_1,input_2, newlink,submit);
  * form to update existing courses
  */
 var formMod = document.createElement("form");
+formMod.className = "";
 formMod.style.cssText = 
         "display : flex;"
         +"flex-direction : column;";
