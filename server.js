@@ -58,6 +58,7 @@ function updatecourses(req){
     var ini = {
         background : req.body.image,
         titre : req.body.coursename,
+        visibility : req.body.visibilitydiv,
         links : []
     }
 
@@ -68,14 +69,16 @@ function updatecourses(req){
         req.body.titreli.forEach(el => {
             ini.links.push({
                 titre : el,
-                link : req.body.pathli[cnt]
+                link : req.body.pathli[cnt],
+                visibility : req.body.visibility[cnt]
             })
             cnt += 1;
         });
     }else {
         ini.links.push({
             titre : req.body.titreli,
-            link : req.body.pathli
+            link : req.body.pathli,
+            visibility : req.body.visibility
         })
     }
 
@@ -105,6 +108,7 @@ function getnewdata(req) {
     var ini = {
         background : "",
         titre : "",
+        visibility : "visible",
         links : []
     }
     ini.titre = req.body.titre;
@@ -118,7 +122,8 @@ function getnewdata(req) {
             else linkstring = "uploads/"+el.filename;
             ini.links.push({
                 titre : req.body[el.fieldname],
-                link : linkstring
+                link : linkstring,
+                visibility : "visible"
             })
         }
     });

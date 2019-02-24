@@ -25,54 +25,58 @@ function creazione(filename, mainDivID) {
     
     
         for (let i = 0; i < data.length; ++i) {
-            var sousDiv = document.createElement("div");
-            sousDiv.classList.add("sousDivision");
-            sousDiv.classList.add("noPadding");
-            sousDiv.classList.add("hoverInfo");
-    
-            // BG 
-            
-            if(data[i]["background"] == "" || data[i]["background"] == undefined){
+            if(data[i]["visibility"] != "hidden"){
+                var sousDiv = document.createElement("div");
+                sousDiv.classList.add("sousDivision");
+                sousDiv.classList.add("noPadding");
+                sousDiv.classList.add("hoverInfo");
+        
+                // BG 
                 
-               sousDiv.style.background = no_background[Math.floor(Math.random() * Math.floor(no_background.length))]; 
+                if(data[i]["background"] == "" || data[i]["background"] == undefined){
+                    
+                sousDiv.style.background = no_background[Math.floor(Math.random() * Math.floor(no_background.length))]; 
+                    
+                }else{
                 
-            }else{
-            
-            sousDiv.style.background = data[i]["background"];}
-    
-    
-    
-            var divEnBas = document.createElement("div");
-            divEnBas.className = "divEnBas";
-            sousDiv.appendChild(divEnBas);
-    
-    
-            var titreDiv = document.createElement("div");
-            titreDiv.className = "titreDiv";
-    
-            // TITRE
-            titreDiv.innerHTML = "<br>" + data[i]["titre"];
-            sousDiv.appendChild(titreDiv);
-    
-            partieCache2
-    
-            var partieCache2 = document.createElement("div");
-            partieCache2.className = "partieCache2";
-            sousDiv.appendChild(partieCache2);
-    
-            // LINKS and LINKNAMES
-            if(data[i]["links"] != undefined){
-            for (let links1 = 0; links1 < data[i]["links"].length; ++links1) {
-                var linko = document.createElement("a");
-                linko.href = data[i]["links"][links1]["link"];
-                linko.innerHTML = data[i]["links"][links1]["titre"];;
-                partieCache2.appendChild(linko);
+                sousDiv.style.background = data[i]["background"];}
+        
+        
+        
+                var divEnBas = document.createElement("div");
+                divEnBas.className = "divEnBas";
+                sousDiv.appendChild(divEnBas);
+        
+        
+                var titreDiv = document.createElement("div");
+                titreDiv.className = "titreDiv";
+        
+                // TITRE
+                titreDiv.innerHTML = "<br>" + data[i]["titre"];
+                sousDiv.appendChild(titreDiv);
+        
+                partieCache2
+        
+                var partieCache2 = document.createElement("div");
+                partieCache2.className = "partieCache2";
+                sousDiv.appendChild(partieCache2);
+        
+                // LINKS and LINKNAMES
+                if(data[i]["links"] != undefined){
+                for (let links1 = 0; links1 < data[i]["links"].length; ++links1) {
+                    if(data[i]["links"][links1]["visibility"] != "hidden"){
+                        var linko = document.createElement("a");
+                        linko.href = data[i]["links"][links1]["link"];
+                        linko.innerHTML = data[i]["links"][links1]["titre"];
+                        partieCache2.appendChild(linko);
+                    }
+                }
+                }
+        
+        
+        
+                mainDiv.appendChild(sousDiv);
             }
-            }
-    
-    
-    
-            mainDiv.appendChild(sousDiv);
         }
         
 
