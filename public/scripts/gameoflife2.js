@@ -1,6 +1,8 @@
-let resolution = 5;
+let resolution = 10;
 let width = window.innerWidth;
 let height = window.innerHeight +100;
+
+p5.disableFriendlyErrors = true; // disables FES
 
 
 let grid = new Array(Math.floor(width/resolution));

@@ -54,7 +54,8 @@ function setup() {
 
 function draw() {
     background(0, 0,0 ,7);
-    
+
+    //------------
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)
             {
@@ -69,7 +70,7 @@ function draw() {
     for(let i = 0 ; i < grid.length; ++i)
         for(let j = 0; j < grid[0].length; ++j)
             grid[i][j] = newGrid[i][j];
-    
+    //------------
     
     
    
