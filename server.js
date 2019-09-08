@@ -9,7 +9,7 @@ app.use(express.json());
 app.use(bodyParser.json());
 
 // listen on port
-var server = app.listen(3000, x => console.log("listening ..."));
+var server = app.listen(80, x => console.log("listening ..."));
 
 // make the folder public the main site
 app.use(express.static("public"));
