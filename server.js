@@ -26,7 +26,13 @@ app.post("/upload",(req,res) => {
     upload(req,res, err => {
         if(err) console.log([err,req.files]);
         else {
+
+            try{
             getnewdata(req);
+
+        }catch(error){
+            res.end("NO REASONS TO WORRY ABOUT -> EROOR : "+error);
+        }
             res.end("SUBMISSION COMPLETED ;");
         }
     })
@@ -37,8 +43,13 @@ app.post("/uploadMod" , (req,res) => {
     upload(req, res , err => {
         if(err) console.log([err]);
         else {
+
+            try{
             console.log([req.body, req.files]);
             updatecourses(req);
+            }catch(error){
+                res.end("NO REASONS TO WORRY ABOUT -> EROOR : "+error);
+            }
 
             res.end("SUBMISSION COMPLETED ;");
         }
@@ -54,10 +65,14 @@ app.post("/uploadMod" , (req,res) => {
 
 // update the json files that need to be modified
 function updatecourses(req){
+   
 
     console.log("updating");
     var classname = "public/listeCours/"+req.body.classname+".JSON";
+    
+   
     var data = JSON.parse(fs.readFileSync(classname));
+
 
     var position = 0;
     position = data.findIndex(el => el.titre == req.body.coursename);
@@ -105,6 +120,8 @@ function updatecourses(req){
     
     fs.writeFileSync(classname,JSON.stringify(newdata));
 
+    
+
 
 }
 
@@ -119,6 +136,11 @@ function updatecourses(req){
 
 // get the data recieved in (req) and push it to the appropriate JSON file
 function getnewdata(req) {
+
+    
+    
+
+
     var ini = {
         background : "",
         titre : "",
@@ -148,6 +170,9 @@ function getnewdata(req) {
 
     data.push(ini);
     fs.writeFileSync(classname,JSON.stringify(data));
+    
+
+    
 }
 
 

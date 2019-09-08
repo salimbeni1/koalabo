@@ -31,6 +31,8 @@ function creazione(filename, mainDivID) {
     
     
         for (let i = 0; i < data.length; ++i) {
+            console.log(data[i]);
+            
             if(data[i]["visibility"] != "hidden"){
                 var sousDiv = document.createElement("div");
                 sousDiv.classList.add("sousDivision");
@@ -85,7 +87,6 @@ function creazione(filename, mainDivID) {
             }
         }
         
-
 
 
 
