@@ -28,6 +28,7 @@ app.post("/upload",(req,res) => {
         else {
 
             try{
+            console.log([req.body, req.files]);
             getnewdata(req);
 
         }catch(error){
@@ -149,20 +150,42 @@ function getnewdata(req) {
     }
     ini.titre = req.body.titre;
     
+    for (var prop in req.body) {
+        if(prop == "classname" || prop == "titre"){}
+        else{
+            ini.links.push({
+                titre : req.body[prop],
+                link : "",
+                visibility : ""
+            });
+        }
+      
+    }
+
+
     req.files.forEach(el => {
-        console.log(el);
+        //console.log(el);
         if (el.fieldname == "background") ini.background = "url(img/"+el.filename+")";
         else {
             var linkstring = "";
             if(el.mimetype.slice(0,11) == "application") linkstring = "pdf/"+el.filename;
             else linkstring = "uploads/"+el.filename;
+
+
+            var theIndex = el.fieldname.slice(4);
+            ini.links[theIndex].link = linkstring;
+            ini.links[theIndex].visibility = "visible";
+
+            /*
             ini.links.push({
                 titre : req.body[el.fieldname],
                 link : linkstring,
                 visibility : "visible"
-            })
+            });*/
         }
     });
+
+    
         
     
     var classname = "public/listeCours/"+req.body.classname+".JSON";

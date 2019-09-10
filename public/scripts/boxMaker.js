@@ -49,7 +49,7 @@ function creazione(filename, mainDivID) {
                 
                 sousDiv.style.background = data[i]["background"];}
         
-        
+                sousDiv.style.backgroundSize = "cover";
         
                 var divEnBas = document.createElement("div");
                 divEnBas.className = "divEnBas";
