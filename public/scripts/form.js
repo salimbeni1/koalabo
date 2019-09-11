@@ -44,8 +44,8 @@ form.className = "";
 form.style.cssText = 
         "display : flex;"
         +"flex-direction : column;";
-//form.action = "http://koalabo.eu:80/upload";
-form.action = "http://localhost:80/upload";
+form.action = "http://koalabo.eu:80/upload";
+//form.action = "http://localhost:80/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
@@ -119,8 +119,8 @@ formMod.className = "";
 formMod.style.cssText = 
         "display : flex;"
         +"flex-direction : column;";
-//formMod.action = "http://koalabo.eu:80/uploadMod";
-formMod.action = "http://localhost:80/uploadMod";
+formMod.action = "http://koalabo.eu:80/uploadMod";
+//formMod.action = "http://localhost:80/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
