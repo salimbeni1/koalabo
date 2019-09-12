@@ -2,11 +2,7 @@
 
 // get the html page to insert element into it
 var page = document.body;
-page.style.cssText = 
-      "background-color : white;"
-     +"margin : 0;"
-     +"height : 100%;"
-     +"display : flex;";
+
 
 
 
@@ -39,21 +35,15 @@ function addoption(name, selecteur, classID, optionalSelected) {
 /**
  * form to create an entire new course
  */
-var form = document.createElement("form");
-form.className = "";
-form.style.cssText = 
-        "display : flex;"
-        +"flex-direction : column;";
-form.action = "http://koalabo.eu:80/upload";
-//form.action = "http://localhost:80/upload";
+var form = document.getElementById("createDiv");
+//form.action = "http://koalabo.eu:80/upload";
+form.action = "http://localhost:80/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
 
 // class name selector
-var select = document.createElement("select");
-select.name = "classname";
-select.innerHTML = " <option disabled selected value> -- select an option -- </option>";
+var select = document.getElementById("classNameSelector");
 addoption("Fr1_SCI", select , "new");
 addoption("Fr2_SCI",select, "new");
 addoption("Fr2_Math",select, "new");
@@ -61,48 +51,24 @@ addoption("Fr3_SCI",select, "new");
 addoption("Fr3_Math",select, "new");
 addoption("Fr1_Math",select, "new");
 
-// title of the new course
-var input_1 = document.createElement("input");
-input_1.name = "titre";
-input_1.type = "text";
-
-// get a file for image bg of the new course
-var input_2 = document.createElement("input");
-input_2.name = "background";
-input_2.type = "file";
-
 
 //links
 var nblinks = 0;
-var newlink = document.createElement("button");
-newlink.innerHTML = "NEW LINK";
-newlink.type = "button"; 
+var newlink = document.getElementById("buttonNewLink");
 newlink.onclick = () => {
     var input_titre = document.createElement("input");
     input_titre.name = "link"+nblinks;
     input_titre.type = "text"; 
+
     var input_x = document.createElement("input");
     input_x.name = "link"+nblinks;
     nblinks += 1;
     input_x.type = "file";
+
     var groupeur = document.createElement("div");
     groupeur.append(input_titre,input_x);
-    form.insertBefore(groupeur,submit); 
+    form.insertBefore(groupeur,document.getElementById("submit1")); 
 };
-
-
-
-// submit of the form
-var submit = document.createElement("button");
-submit.type = "submit";
-submit.innerHTML = "SUBMIT"
-
-form.append(select,input_1,input_2, newlink,submit);
-
-
-
-
-
 
 
 
@@ -114,21 +80,15 @@ form.append(select,input_1,input_2, newlink,submit);
 /**
  * form to update existing courses
  */
-var formMod = document.createElement("form");
-formMod.className = "";
-formMod.style.cssText = 
-        "display : flex;"
-        +"flex-direction : column;";
-formMod.action = "http://koalabo.eu:80/uploadMod";
-//formMod.action = "http://localhost:80/uploadMod";
+var formMod = document.getElementById("updateDiv");
+//formMod.action = "http://koalabo.eu:80/uploadMod";
+formMod.action = "http://localhost:80/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
 
 // selector for the class name
-var select2 = document.createElement("select");
-select2.name = "classname";
-select2.innerHTML = " <option disabled selected value> -- select an option -- </option>";
+var select2 = document.getElementById("classNameSelectorUpdate");
 addoption("Fr1_SCI", select2, "renew");
 addoption("Fr2_SCI",select2, "renew");
 addoption("Fr2_Math",select2, "renew");
@@ -137,11 +97,7 @@ addoption("Fr3_Math",select2, "renew");
 addoption("Fr1_Math",select2, "renew");
 
 // selector for the module of the course
-var select3 = document.createElement("select");
-select3.innerHTML = " <option disabled selected value> -- select an option -- </option>";
-select3.name = "coursename";
-
-
+var select3 = document.getElementById("courseNameSelector");
 /** 
  * the value of the json file requested 
  * (ex : FR1_SCI.JSON formated)
@@ -195,7 +151,7 @@ select3.onchange = () => {
     imageinput.type = "text";
     imageinput.className = "deletable4";
     imageinput.value = moduleSelected.background;
-    formMod.insertBefore(imageinput,submit2);
+    formMod.insertBefore(imageinput,document.getElementById("submit2"));
 
     // input to hide or not the module
     var inputVisiblediv = document.createElement("select");
@@ -203,7 +159,7 @@ select3.onchange = () => {
     inputVisiblediv.name = "visibilitydiv";
     addoption("visible",inputVisiblediv,"vc",moduleSelected.visibility == "visible");
     addoption("hidden",inputVisiblediv,"vc", moduleSelected.visibility == "hidden");
-    formMod.insertBefore(inputVisiblediv,submit2);
+    formMod.insertBefore(inputVisiblediv,document.getElementById("submit2"));
 
     // display all the chapters of that module
     temp.find(el => el.titre == select3.value).links.forEach((el, index) => {
@@ -237,18 +193,14 @@ select3.onchange = () => {
 
 
         eng.append(inputTitre,inputPath,inputFile,inputVisible);
-        formMod.insertBefore(eng,submit2);
+        formMod.insertBefore(eng,document.getElementById("submit2"));
 
     });
 
 }
 
-// the submit for the form to update courses
-var submit2 = document.createElement("button");
-submit2.type = "submit";
-submit2.innerHTML = "SUBMIT";
 
-formMod.append(select2,select3,submit2);
+formMod.append(select2,select3,document.getElementById("submit2"));
 
 
 

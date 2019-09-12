@@ -4,10 +4,47 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title></title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="css/form.css">
 </head>
 
 <body>
+    
+
+    <form id="createDiv">
+
+        <select id="classNameSelector" name="classname">
+            <option disabled selected value> -- select an option -- </option>
+        </select>
+
+        <input name="titre" type="text">
+
+        <input name="background" type="file">
+
+        <button id="buttonNewLink" type="button"> NEW LINK </button>
+
+        <button type="submit" id="submit1">SUBMIT</button>
+
+    </form>
+
+    <form id="updateDiv">
+
+        <select id="classNameSelectorUpdate" name="classname">
+                <option disabled selected value> -- select an option -- </option>
+        </select>
+
+        <select id="courseNameSelector" name="coursename">
+                <option disabled selected value> -- select an option -- </option>
+        </select>
+
+        <button type="submit" id="submit2">SUBMIT</button>
+
+    </form>
+
+
+
+
+
+
     <script src="scripts/form.js"></script>
 </body>
 </html>

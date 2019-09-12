@@ -1,0 +1,25 @@
+body {
+    background-color : white;
+    margin : 0;
+    height : 100%;
+    display : flex;
+}
+
+form {
+
+    display : flex;
+    flex-direction : column;
+}
+
+select {
+
+}
+
+input {
+
+
+}
+
+button {
+
+}
