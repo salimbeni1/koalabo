@@ -2,24 +2,38 @@ body {
     background-color : white;
     margin : 0;
     height : 100%;
-    display : flex;
+    display:flex;
+    justify-content: space-evenly;
 }
 
 form {
-
+    background-color: rgba(55, 209, 89, 0.746);
+    padding: 10px;
+    border-radius: 10px;
     display : flex;
     flex-direction : column;
 }
 
-select {
+h1{
+    text-align: center;
+}
 
+select {
+    margin-bottom: 15px;
 }
 
 input {
-
+    margin-bottom: 15px;
 
 }
 
 button {
+    margin-bottom: 15px;
+}
 
+.singleChapt {
+    background-color: rgba(41, 41, 41, 0.062);
+    margin: 6px;
+    padding: 6px;
+    border-radius: 5px;
 }

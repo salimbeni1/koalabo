@@ -36,8 +36,8 @@ function addoption(name, selecteur, classID, optionalSelected) {
  * form to create an entire new course
  */
 var form = document.getElementById("createDiv");
-//form.action = "http://koalabo.eu:80/upload";
-form.action = "http://localhost:80/upload";
+form.action = "http://koalabo.eu:80/upload";
+//form.action = "http://localhost:80/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
@@ -52,21 +52,27 @@ addoption("Fr3_Math",select, "new");
 addoption("Fr1_Math",select, "new");
 
 
+
 //links
 var nblinks = 0;
 var newlink = document.getElementById("buttonNewLink");
 newlink.onclick = () => {
+
+    var input_titre_label = document.createElement("label");
+    input_titre_label.innerHTML = "titre : ";
     var input_titre = document.createElement("input");
     input_titre.name = "link"+nblinks;
     input_titre.type = "text"; 
 
+    var input_x_label = document.createElement("label");
+    input_x_label.innerHTML = " importer : ";
     var input_x = document.createElement("input");
     input_x.name = "link"+nblinks;
     nblinks += 1;
     input_x.type = "file";
 
     var groupeur = document.createElement("div");
-    groupeur.append(input_titre,input_x);
+    groupeur.append(input_titre_label,input_titre,input_x_label,input_x);
     form.insertBefore(groupeur,document.getElementById("submit1")); 
 };
 
@@ -81,8 +87,8 @@ newlink.onclick = () => {
  * form to update existing courses
  */
 var formMod = document.getElementById("updateDiv");
-//formMod.action = "http://koalabo.eu:80/uploadMod";
-formMod.action = "http://localhost:80/uploadMod";
+formMod.action = "http://koalabo.eu:80/uploadMod";
+//formMod.action = "http://localhost:80/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
@@ -146,41 +152,54 @@ select3.onchange = () => {
     var moduleSelected = temp.find(el => el.titre == select3.value);
 
     // image to change the path
+    var imageInputLabel = document.createElement("label");
+    imageInputLabel.innerHTML = " image : ";
     var imageinput = document.createElement("input");
     imageinput.name = "image";
     imageinput.type = "text";
     imageinput.className = "deletable4";
     imageinput.value = moduleSelected.background;
+    
     formMod.insertBefore(imageinput,document.getElementById("submit2"));
+    formMod.insertBefore(imageInputLabel,imageinput);
 
     // input to hide or not the module
+    var inputVisibledivLabel = document.createElement("label");
+    inputVisibledivLabel.innerHTML = " cacher le bloc : ";
     var inputVisiblediv = document.createElement("select");
     inputVisiblediv.className = "deletable4";
     inputVisiblediv.name = "visibilitydiv";
     addoption("visible",inputVisiblediv,"vc",moduleSelected.visibility == "visible");
     addoption("hidden",inputVisiblediv,"vc", moduleSelected.visibility == "hidden");
     formMod.insertBefore(inputVisiblediv,document.getElementById("submit2"));
+    formMod.insertBefore(inputVisibledivLabel,inputVisiblediv)
 
     // display all the chapters of that module
     temp.find(el => el.titre == select3.value).links.forEach((el, index) => {
 
         // div to group a single chapter info
         var eng = document.createElement("div");
-        eng.className = "deletable4";
+        eng.className = "deletable4 singleChapt";
 
         // title of the chapter
+        var inputTitreLabel = document.createElement("label");
+        inputTitreLabel.innerHTML = " titre : ";
         var inputTitre = document.createElement("input");
         inputTitre.name = "titreli";
         inputTitre.type = "text";
         inputTitre.value = el.titre;
 
         // path of the link of that chapter
+        var inputPathLabel = document.createElement("label");
+        inputPathLabel.innerHTML = " lien : ";
         var inputPath = document.createElement("input");
         inputPath.name = "pathli";
         inputPath.type = "text";
         inputPath.value = el.link;
 
         // file to change the link of that chapter
+        var inputFileLabel = document.createElement("label");
+        inputFileLabel.innerHTML = " importer : ";
         var inputFile = document.createElement("input");
         inputFile.name = index;
         inputFile.type = "file";
@@ -192,15 +211,13 @@ select3.onchange = () => {
         addoption("hidden",inputVisible,"vc", el.visibility == "hidden");
 
 
-        eng.append(inputTitre,inputPath,inputFile,inputVisible);
+        eng.append(inputTitreLabel,inputTitre,inputPathLabel,inputPath,inputFileLabel,inputFile,inputVisible);
         formMod.insertBefore(eng,document.getElementById("submit2"));
 
     });
 
 }
 
-
-formMod.append(select2,select3,document.getElementById("submit2"));
 
 
 

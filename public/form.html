@@ -12,31 +12,42 @@
 
     <form id="createDiv">
 
+        <h1>creer un nouveau bloc</h1>
+
+        <label for="classNameSelector">choisir une classe :</label>
         <select id="classNameSelector" name="classname">
-            <option disabled selected value> -- select an option -- </option>
+            <option disabled selected value> -- selectione une option -- </option>
         </select>
 
+        <label>ecrire le nom du bloc :</label>
         <input name="titre" type="text">
 
+        <label>choisir une image de fond :</label>
         <input name="background" type="file">
 
-        <button id="buttonNewLink" type="button"> NEW LINK </button>
+        <label>cliquer pour ajouter un lien :</label>
+        <button id="buttonNewLink" type="button"> ajouter un lien </button>
 
-        <button type="submit" id="submit1">SUBMIT</button>
+        
+        <button type="submit" id="submit1">CREER</button>
 
     </form>
 
     <form id="updateDiv">
 
+        <h1> modifier un bloc existant</h1>
+
+        <label for="classNameSelectorUpdate">choisir une classe :</label>
         <select id="classNameSelectorUpdate" name="classname">
-                <option disabled selected value> -- select an option -- </option>
+                <option disabled selected value> -- selectione une option -- </option>
         </select>
 
+        <label for="courseNameSelector">choisir un bloc :</label>
         <select id="courseNameSelector" name="coursename">
-                <option disabled selected value> -- select an option -- </option>
+                <option disabled selected value> -- selectione une option -- </option>
         </select>
 
-        <button type="submit" id="submit2">SUBMIT</button>
+        <button type="submit" id="submit2">MODIFIER</button>
 
     </form>
 
