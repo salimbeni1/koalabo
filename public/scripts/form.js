@@ -36,8 +36,8 @@ function addoption(name, selecteur, classID, optionalSelected) {
  * form to create an entire new course
  */
 var form = document.getElementById("createDiv");
-form.action = "http://koalabo.eu:80/upload";
-//form.action = "http://localhost:80/upload";
+//form.action = "http://koalabo.eu:80/upload";
+form.action = "/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
@@ -58,6 +58,12 @@ var nblinks = 0;
 var newlink = document.getElementById("buttonNewLink");
 newlink.onclick = () => {
 
+    console.log(nblinks);
+    if(nblinks >= 6){ // pas plus de 6 lien par bloc
+        newlink.innerHTML = "! MAX 6 LIENS !";
+    }
+    else{
+
     var input_titre_label = document.createElement("label");
     input_titre_label.innerHTML = "titre : ";
     var input_titre = document.createElement("input");
@@ -74,6 +80,7 @@ newlink.onclick = () => {
     var groupeur = document.createElement("div");
     groupeur.append(input_titre_label,input_titre,input_x_label,input_x);
     form.insertBefore(groupeur,document.getElementById("submit1")); 
+    }
 };
 
 
@@ -87,8 +94,8 @@ newlink.onclick = () => {
  * form to update existing courses
  */
 var formMod = document.getElementById("updateDiv");
-formMod.action = "http://koalabo.eu:80/uploadMod";
-//formMod.action = "http://localhost:80/uploadMod";
+//formMod.action = "http://koalabo.eu:80/uploadMod";
+formMod.action = "/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
@@ -160,8 +167,18 @@ select3.onchange = () => {
     imageinput.className = "deletable4";
     imageinput.value = moduleSelected.background;
     
-    formMod.insertBefore(imageinput,document.getElementById("submit2"));
-    formMod.insertBefore(imageInputLabel,imageinput);
+    var imageFileInput = document.createElement("input");
+    imageFileInput.type = "file";
+    imageFileInput.name = "imageFile";
+
+    var tempImageDiv = document.createElement("div");
+    tempImageDiv.append(imageInputLabel,imageinput,imageFileInput);
+    formMod.insertBefore(tempImageDiv,document.getElementById("submit2"));
+    
+
+
+
+
 
     // input to hide or not the module
     var inputVisibledivLabel = document.createElement("label");

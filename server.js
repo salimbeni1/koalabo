@@ -108,10 +108,17 @@ function updatecourses(req){
     }
 
     // pour tout les req.files put them to their index ==> files.nameinpiut
+    // et pour le background
 
     req.files.forEach(el => {
+        
+        if(el.fieldname == "imageFile"){
+            ini.background = "url(img/"+el.filename+")";
+        }
+        else{
         // substr(6) to remove public from directory
         ini.links[parseInt(el.fieldname)].link = el.path.substr(6);
+        }
     });
 
     
