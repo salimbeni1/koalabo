@@ -115,8 +115,11 @@ function updatecourses(req){
     });
 
     
-
+    if(req.body.supprimerBloc == "YES"){
+        // supprimer le bloc
+    }else{
     newdata.splice(position,0,ini);
+    }
 
     
     fs.writeFileSync(classname,JSON.stringify(newdata));

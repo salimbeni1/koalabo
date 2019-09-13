@@ -36,8 +36,8 @@ function addoption(name, selecteur, classID, optionalSelected) {
  * form to create an entire new course
  */
 var form = document.getElementById("createDiv");
-form.action = "http://koalabo.eu:80/upload";
-//form.action = "http://localhost:80/upload";
+//form.action = "http://koalabo.eu:80/upload";
+form.action = "http://localhost:80/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
@@ -87,8 +87,8 @@ newlink.onclick = () => {
  * form to update existing courses
  */
 var formMod = document.getElementById("updateDiv");
-formMod.action = "http://koalabo.eu:80/uploadMod";
-//formMod.action = "http://localhost:80/uploadMod";
+//formMod.action = "http://koalabo.eu:80/uploadMod";
+formMod.action = "http://localhost:80/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
@@ -171,8 +171,47 @@ select3.onchange = () => {
     inputVisiblediv.name = "visibilitydiv";
     addoption("visible",inputVisiblediv,"vc",moduleSelected.visibility == "visible");
     addoption("hidden",inputVisiblediv,"vc", moduleSelected.visibility == "hidden");
-    formMod.insertBefore(inputVisiblediv,document.getElementById("submit2"));
-    formMod.insertBefore(inputVisibledivLabel,inputVisiblediv)
+    
+    // delete button
+    var deleteButtonLabel = document.createElement("label");
+    deleteButtonLabel.innerHTML = " supprimer le bloc : ";
+    var deleteButton = document.createElement("button");
+    deleteButton.name = "supprimer";
+    deleteButton.type = "button";
+    deleteButton.innerHTML = "SUPPRIMER";
+    deleteButton.className = "deletable4";
+
+    // hidden input to delete
+    var hiddenDelete = document.createElement("input");
+    hiddenDelete.name = "supprimerBloc";
+    hiddenDelete.value = "NO";
+    hiddenDelete.type = "text";
+    hiddenDelete.style.display = "none";
+    hiddenDelete.className = "deletable4";
+
+    formMod.append(hiddenDelete);
+
+    deleteButton.onclick = () => {
+        
+        if(hiddenDelete.value == "NO") {
+            hiddenDelete.value = "YES";
+            formMod.style.backgroundColor = "red"; 
+        }else{
+            hiddenDelete.value = "NO";
+            formMod.style.backgroundColor = "rgba(55, 209, 89, 0.746)"; 
+        }
+          
+    }
+
+
+    var grouppeur = document.createElement("div");
+    grouppeur.append(inputVisibledivLabel,inputVisiblediv,deleteButtonLabel,deleteButton) 
+    
+    formMod.insertBefore(grouppeur,document.getElementById("submit2"));
+    
+
+    
+
 
     // display all the chapters of that module
     temp.find(el => el.titre == select3.value).links.forEach((el, index) => {
