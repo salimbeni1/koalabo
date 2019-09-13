@@ -255,6 +255,12 @@ select3.onchange = () => {
         var eng = document.createElement("div");
         eng.className = "deletable4 singleChapt";
 
+        if(el.visibility == "hidden"){
+            eng.style.backgroundColor = "rgba(41, 41, 41, 0.562)";
+        }else{
+            eng.style.backgroundColor = "rgba(41, 41, 41, 0.062)";
+        }
+
         // title of the chapter
         var inputTitreLabel = document.createElement("label");
         inputTitreLabel.innerHTML = " titre : ";
@@ -283,6 +289,14 @@ select3.onchange = () => {
         inputVisible.name = "visibility";
         addoption("visible",inputVisible,"vc",el.visibility == "visible");
         addoption("hidden",inputVisible,"vc", el.visibility == "hidden");
+
+        inputVisible.onchange = () => {
+            if(inputVisible.value == "hidden"){
+                eng.style.backgroundColor = "rgba(41, 41, 41, 0.562)";
+            }else{
+                eng.style.backgroundColor = "rgba(41, 41, 41, 0.062)";
+            }
+        };
 
 
         eng.append(inputTitreLabel,inputTitre,inputPathLabel,inputPath,inputFileLabel,inputFile,inputVisible);
