@@ -170,6 +170,7 @@ select3.onchange = () => {
     var imageFileInput = document.createElement("input");
     imageFileInput.type = "file";
     imageFileInput.name = "imageFile";
+    imageFileInput.className = "deletable4";
 
     var tempImageDiv = document.createElement("div");
     tempImageDiv.append(imageInputLabel,imageinput,imageFileInput);
