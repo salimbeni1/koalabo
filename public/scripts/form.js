@@ -36,8 +36,8 @@ function addoption(name, selecteur, classID, optionalSelected) {
  * form to create an entire new course
  */
 var form = document.getElementById("createDiv");
-//form.action = "http://koalabo.eu:80/upload";
-form.action = "http://localhost:80/upload";
+form.action = "http://koalabo.eu:80/upload";
+//form.action = "http://localhost:80/upload";
 form.method = "POST";
 form.enctype = "multipart/form-data";
 
@@ -87,8 +87,8 @@ newlink.onclick = () => {
  * form to update existing courses
  */
 var formMod = document.getElementById("updateDiv");
-//formMod.action = "http://koalabo.eu:80/uploadMod";
-formMod.action = "http://localhost:80/uploadMod";
+formMod.action = "http://koalabo.eu:80/uploadMod";
+//formMod.action = "http://localhost:80/uploadMod";
 formMod.method = "POST";
 formMod.enctype = "multipart/form-data";
 
