@@ -158,9 +158,24 @@ select3.onchange = () => {
     // the selected module
     var moduleSelected = temp.find(el => el.titre == select3.value);
 
+
+    // change name of the bloc
+    var nameBlocInputLabel = document.createElement("label");
+    nameBlocInputLabel.innerHTML = " changer le nom du bloc : ";
+    nameBlocInputLabel.className = "deletable4";
+    var nameBlocInput = document.createElement("input");
+    nameBlocInput.type = "text";
+    nameBlocInput.value = moduleSelected.titre;
+    nameBlocInput.className = "deletable4";
+    nameBlocInput.name = "newTitre";
+    
+    formMod.insertBefore(nameBlocInput,document.getElementById("submit2"));
+    formMod.insertBefore(nameBlocInputLabel,nameBlocInput);
+
     // image to change the path
     var imageInputLabel = document.createElement("label");
     imageInputLabel.innerHTML = " image : ";
+    imageInputLabel.className = "deletable4";
     var imageinput = document.createElement("input");
     imageinput.name = "image";
     imageinput.type = "text";
@@ -184,6 +199,7 @@ select3.onchange = () => {
     // input to hide or not the module
     var inputVisibledivLabel = document.createElement("label");
     inputVisibledivLabel.innerHTML = " cacher le bloc : ";
+    inputVisibledivLabel.className = "deletable4";
     var inputVisiblediv = document.createElement("select");
     inputVisiblediv.className = "deletable4";
     inputVisiblediv.name = "visibilitydiv";
@@ -193,6 +209,7 @@ select3.onchange = () => {
     // delete button
     var deleteButtonLabel = document.createElement("label");
     deleteButtonLabel.innerHTML = " supprimer le bloc : ";
+    deleteButtonLabel.className = "deletable4";
     var deleteButton = document.createElement("button");
     deleteButton.name = "supprimer";
     deleteButton.type = "button";

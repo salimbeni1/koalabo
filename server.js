@@ -82,7 +82,7 @@ function updatecourses(req){
 
     var ini = {
         background : req.body.image,
-        titre : req.body.coursename,
+        titre : req.body.newTitre,
         visibility : req.body.visibilitydiv,
         links : []
     }
