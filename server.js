@@ -228,7 +228,7 @@ var Storage = multer.diskStorage({
             callback(null,"public/uploads");
     },
     filename: function(req, file, callback) {
-        callback(null, "date_"+Date.now() + "_" + file.originalname);
+        callback(null, file.originalname);
     }
 });
 
