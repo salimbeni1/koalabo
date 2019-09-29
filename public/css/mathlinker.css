@@ -1,15 +1,10 @@
-@font-face {
-    font-family: 'ocra';
-    src: /*url('myfont.woff') format('woff'),  Chrome 6+, Firefox 3.6+, IE 9+, Safari 5.1+ */
-         url('../fonts/OCRAEXT.TTF') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */
-    }  
-
+@import url('https://fonts.googleapis.com/css?family=Barriecito&display=swap');
 
 
 
     a {
         text-decoration: none;
-        color:  rgba(35, 168, 192, 0.931);
+        color:  #FFF727;
 }
 
 
@@ -21,13 +16,15 @@
     justify-content: space-around;
 
 
-    font-family: "ocra";
+    font-family: 'Barriecito', cursive;
     text-align: center;
     font-size: 20vh;
 }
 
 body{
     margin: 0;
+    background-color: #719CC6;
+    background-image: url(../img/skyBlue.jpg);
 }
 
 
@@ -37,7 +34,5 @@ body{
         flex-direction: column;
     }
 
-    body{
-        background-color: red;
-    }
+    
 }
