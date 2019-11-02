@@ -47,7 +47,13 @@ app.post("/uploadMod" , (req,res) => {
 
             try{
             console.log([req.body, req.files]);
+
+            if(req.body.coursename == undefined){
+                throw "no course to update";
+            }
+            
             updatecourses(req);
+
             }catch(error){
                 res.end("NO REASONS TO WORRY ABOUT -> EROOR : "+error);
             }
