@@ -1,42 +1,28 @@
 var express = require('express');
 var multer = require('multer');
-var vhost = require('vhost');
 var bodyParser = require('body-parser');
 var fs = require('fs');
 
-// initialise express koalaboApp
-var koalaboApp = express();
-
-koalaboApp.use(express.json());
-koalaboApp.use(bodyParser.json());
-
-
-
-// make the folder public the main site
-koalaboApp.use(express.static("public"));
-
-
-
-var masterApp = express();
-var fantaLolApp = express();
-
-fantaLolApp.get("*" , function(req , res) {
-    res.end("33");
-})
-
-
-masterApp.use( vhost("koalabo.eu" , koalaboApp) );
-masterApp.use( vhost("fantalol.com" , fantaLolApp) );
+// initialise express app
+var app = express();
+app.use(express.json());
+app.use(bodyParser.json());
 
 // listen on port
-var server = masterApp.listen(80, x => console.log("listening ..."));
+var server = app.listen(80, x => console.log("listening ..."));
+
+// make the folder public the main site
+app.use(express.static("public"));
+
+
+
 
 
 
 // what to do during a POST request :
 
 
-koalaboApp.post("/upload",(req,res) => {
+app.post("/upload",(req,res) => {
     upload(req,res, err => {
         if(err) console.log([err,req.files]);
         else {
@@ -54,7 +40,7 @@ koalaboApp.post("/upload",(req,res) => {
 });
 
 
-koalaboApp.post("/uploadMod" , (req,res) => {
+app.post("/uploadMod" , (req,res) => {
     upload(req, res , err => {
         if(err) console.log([err]);
         else {
@@ -165,7 +151,7 @@ function updatecourses(req){
 //        CREATE NEW COURSE
 ////////////////////////////////////////////////////////////////////////////////
 
-// get the data recieved in (req) and push it to the koalaboAppropriate JSON file
+// get the data recieved in (req) and push it to the appropriate JSON file
 function getnewdata(req) {
 
     
@@ -198,7 +184,7 @@ function getnewdata(req) {
         if (el.fieldname == "background") ini.background = "url(img/"+el.filename+")";
         else {
             var linkstring = "";
-            if(el.mimetype.slice(0,11) == "koalaboApplication") linkstring = "pdf/"+el.filename;
+            if(el.mimetype.slice(0,11) == "application") linkstring = "pdf/"+el.filename;
             else linkstring = "uploads/"+el.filename;
 
 
@@ -242,7 +228,7 @@ var Storage = multer.diskStorage({
     destination: function(req,file,callback) {
         if(file.mimetype.slice(0,5) == "image")
             callback(null,"public/img");    
-        else if(file.mimetype.slice(0,11) == "koalaboApplication")
+        else if(file.mimetype.slice(0,11) == "application")
             callback(null,"public/pdf");
         else
             callback(null,"public/uploads");
