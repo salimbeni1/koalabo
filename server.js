@@ -20,9 +20,7 @@ koalaboApp.use(express.static("public"));
 var masterApp = express();
 var fantaLolApp = express();
 
-fantaLolApp.get("*" , function(req , res) {
-    res.end("33");
-})
+fantaLolApp.use(express.static("fantaesport"));
 
 
 
