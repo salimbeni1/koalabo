@@ -26,8 +26,8 @@ fantaLolApp.get("*" , function(req , res) {
 
 
 
-masterApp.use( vhost( "koalabo.eu" , koalaboApp ) );
-masterApp.use( vhost( "fantaesport.com" , fantaLolApp ) );
+masterApp.use( vhost( "www.koalabo.eu" , koalaboApp ) );
+masterApp.use( vhost( "www.fantaesport.com" , fantaLolApp ) );
 
 
 // listen on port
