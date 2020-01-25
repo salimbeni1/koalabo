@@ -16,20 +16,9 @@ koalaboApp.use(bodyParser.json());
 koalaboApp.use(express.static("public"));
 
 
-
-var masterApp = express();
-var fantaLolApp = express();
-
-fantaLolApp.use(express.static("fantaesport"));
-
-
-
-masterApp.use( vhost( "www.koalabo.eu" , koalaboApp ) );
-masterApp.use( vhost( "www.fantaesport.com" , fantaLolApp ) );
-
-
 // listen on port
-var server = masterApp.listen( 3000 , x => console.log("listening ..."));
+var portNumber = 3000;
+var server = koalaboApp.listen( portNumber , x => console.log("listening at port : " + portNumber + "\n"));
 
 
 
