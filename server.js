@@ -29,7 +29,7 @@ masterApp.use( vhost( "www.fantaesport.com" , fantaLolApp ) );
 
 
 // listen on port
-var server = masterApp.listen(80, x => console.log("listening ..."));
+var server = masterApp.listen( 3000 , x => console.log("listening ..."));
 
 
 
