@@ -31,6 +31,13 @@ function creazione(filename, mainDivID) {
     
     
         for (let i = 0; i < data.length; ++i) {
+
+            // a quick and very dirty hack to remove undefined blocks
+            if( data[i]["titre"] == undefined || 
+                data[i]["links"] == undefined ) 
+                continue;
+
+
             console.log(data[i]);
             
             if(data[i]["visibility"] != "hidden"){
