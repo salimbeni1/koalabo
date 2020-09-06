@@ -12,7 +12,7 @@
 #
 #Update the first 4 variables with your information
 
-domain="KOALABO.EU"   # your domain
+domain="KOALABO.CLUB"   # your domain
 name="@"     # name of A record to update
 key="dLDQ1oB5NM1R_SGP4zkcJW3aAPm9RKER1Eo"      # key for godaddy developer API
 secret="SGP71MvfnUss3kYBkzTmKm"   # secret for godaddy developer API
