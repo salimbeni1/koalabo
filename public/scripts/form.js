@@ -23,6 +23,15 @@ function addoption(name, selecteur, classID, optionalSelected) {
     selecteur.append(op);
 }
 
+function addoptionIndexed(name , index, selecteur, classID, optionalSelected) {
+    var op = document.createElement("option");
+    if (optionalSelected) op.selected = "selected";
+    op.value = name;
+    op.className = classID;
+    op.innerHTML = index + " : " + name;
+    selecteur.append(op);
+}
+
 
 
 
@@ -132,8 +141,10 @@ select2.onchange = () => {
         console.log(data);
         document.querySelectorAll('.deletable3').forEach(option => option.remove());
 
-        data.forEach(el => {
-            addoption(el["titre"],select3,"deletable3");
+        data.forEach((el,index) => {
+            //addoption(el["titre"],select3,"deletable3");
+            //addoption(index+" "+el["titre"],select3,"deletable3");
+            addoptionIndexed(el["titre"] , index , select3,"deletable3")
         });
 
     } else {
@@ -218,6 +229,19 @@ select3.onchange = () => {
     deleteButton.innerHTML = "SUPPRIMER";
     deleteButton.className = "deletable4";
 
+    // block order
+
+    var blockOrderLabel =  document.createElement("label");
+    blockOrderLabel.innerHTML = " numero : ";
+    blockOrderLabel.className = "deletable4";
+    var blockOrderInput = document.createElement("input");
+    blockOrderInput.name = "blockNumber";
+    blockOrderInput.type =  "number";
+    var orderNumber = temp.findIndex(el => el.titre == select3.value);
+    blockOrderInput.value = orderNumber;
+    blockOrderInput.className = "deletable4";
+
+
     // hidden input to delete
     var hiddenDelete = document.createElement("input");
     hiddenDelete.name = "supprimerBloc";
@@ -242,7 +266,7 @@ select3.onchange = () => {
 
 
     var grouppeur = document.createElement("div");
-    grouppeur.append(inputVisibledivLabel,inputVisiblediv,deleteButtonLabel,deleteButton) 
+    grouppeur.append(inputVisibledivLabel,inputVisiblediv,deleteButtonLabel,deleteButton,blockOrderLabel, blockOrderInput) 
     
     formMod.insertBefore(grouppeur,document.getElementById("submit2"));
     

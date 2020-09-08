@@ -86,6 +86,9 @@ function updatecourses(req){
 
     var position = 0;
     position = data.findIndex(el => el.titre == req.body.coursename);
+
+    newposition = req.body.blockNumber;
+    position = newposition;
     
     var newdata = data.filter(el => el.titre != req.body.coursename);
 
