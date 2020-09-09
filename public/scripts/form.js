@@ -59,7 +59,7 @@ addoption("Fr2_Math",select, "new");
 addoption("Fr3_SCI",select, "new");
 addoption("Fr3_Math",select, "new");
 addoption("Fr1_Math",select, "new");
-addoption("enigmes",select, "new");
+addoption("physique",select, "new");
 
 
 
@@ -118,7 +118,7 @@ addoption("Fr2_Math",select2, "renew");
 addoption("Fr3_SCI" ,select2, "renew");
 addoption("Fr3_Math",select2, "renew");
 addoption("Fr1_Math",select2, "renew");
-addoption("enigmes" ,select2, "renew");
+addoption("physique" ,select2, "renew");
 
 // selector for the module of the course
 var select3 = document.getElementById("courseNameSelector");
