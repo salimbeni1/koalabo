@@ -122,10 +122,11 @@ display: block;
         display: block;
     }
 
-
+    /*
     #koalabo {
         display: none;
     }
+    */
 
     #myVideo {
       left: 0;
@@ -172,10 +173,11 @@ display: block;
       display: block;
   }
 
-
+  /*
   #koalabo {
       display: none;
   }
+  */
 
   #myVideo {
     left: 0;
@@ -214,7 +216,7 @@ display: block;
   /* 
     ##Device = Low Resolution Tablets, Mobiles (Landscape)
     ##Screen = B/w 481px to 767px
-  */
+  
   
   @media (min-width: 481px) and (max-width: 767px) {
     
@@ -232,9 +234,11 @@ display: block;
       display: block;
   }
 
+  
     #koalabo {
       display: none;
     }
+  
 
     #divbeforebig3 {
       flex-direction: column;
@@ -258,25 +262,30 @@ display: block;
       font-size: 20vh;
 
       display: flex;
-      justify-content: center; /* align horizontal */
-      align-items: center; /* align vertical */
+      justify-content: center; 
+      align-items: center; 
       
   }
     
   }
+
+  */
+
+
   
   /* 
     ##Device = Most of the Smartphones Mobiles (Portrait)
     ##Screen = B/w 320px to 479px
   */
   
-  @media (min-width: 0px) and (max-width: 480px) {
+  @media (min-width: 0px) and (max-width: 767px) {
     
     
-
+  /*
     #koalabo {
       display: none;
     }
+  */
 
     #myVideo {
       left: 0;
