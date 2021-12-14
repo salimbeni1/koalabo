@@ -1,0 +1,77 @@
+.container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    width: 30vw;
+    height: 20vh;
+}
+
+.extra {
+    
+    background-color: hotpink;
+    top: 20vh;
+    left: 7vw;
+    
+}
+
+
+.math{
+    
+    
+    background-color: rgb(105, 255, 223);
+    top: 25vh;
+    left: 60vw;
+    
+}
+
+
+.science {
+    
+    background-color: rgb(105, 175, 255);
+    top: 55vh;
+    left: 60vw;
+    
+}
+
+
+
+
+$trunc-x-pose: 45vw;
+
+.palme{
+    fill: greenyellow;
+    position: absolute;
+    top: 50vh;
+}
+
+
+.trunc{
+    fill: brown;
+    position: absolute;
+    left: $trunc-x-pose;
+    height: 100vh;
+    
+}
+
+.cloud{
+    position: absolute;
+    fill: blue;
+    right: 0;
+    width: 45vw;
+}
+
+.koala{
+    position: absolute;
+    fill: grey;
+    left: $trunc-x-pose;
+    top: 30vh;
+}
+
+
+
+
+
+
+
