@@ -1,0 +1,26 @@
+.container {
+
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: yellowgreen;
+
+    padding-top: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
+
+    div {
+        margin: 25px;
+        width: 200px;
+        height: 200px;
+        background-color: hotpink;
+
+        border-radius: 10px;
+
+        display: grid;
+        place-items: center;
+    }
+
+}

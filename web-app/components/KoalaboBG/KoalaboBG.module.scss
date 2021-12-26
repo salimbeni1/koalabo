@@ -1,0 +1,32 @@
+$trunc-x-pose: 45vw;
+
+.palme{
+    fill: greenyellow;
+    position: absolute;
+    top: 50vh;
+}
+
+
+.trunc{
+    fill: brown;
+    position: absolute;
+    left: $trunc-x-pose;
+    height: 100vh;
+    
+}
+
+.cloud{
+    position: absolute;
+    fill: blue;
+    right: 0;
+    width: 45vw;
+}
+
+.koala{
+    position: absolute;
+    fill: grey;
+    left: $trunc-x-pose;
+    top: 30vh;
+}
+
+
