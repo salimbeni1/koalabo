@@ -33,8 +33,8 @@ KOALABODB_PWD=<>
 backend/server/.env
 
 ```
-KOALABODB_NAME=koalabo
-KOALABODB_PWD=koalabo
+KOALABODB_NAME=<>
+KOALABODB_PWD=<>
 ```
 
 ## TODO
