@@ -17,8 +17,8 @@ yarn dev
 backend/database/.env
 
 ```
-KOALABODB_NAME=koalabo
-KOALABODB_PWD=koalabo
+KOALABODB_NAME=<>
+KOALABODB_PWD=<>
 ```
 
 backend/.env
