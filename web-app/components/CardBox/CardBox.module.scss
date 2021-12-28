@@ -1,14 +1,13 @@
 $cardbg-color: rgba(255, 255, 255, 0.842);
 
 .container {
-
-    position: absolute;
-    width: 100vw;
-    min-height: 100vh;
-    background-color: yellowgreen;
+    //width: 100%;
+    //min-height: 100%;
+    // background-color: yellowgreen;
 
     padding-top: 100px;
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
     justify-content: center;
 
@@ -24,6 +23,7 @@ $cardbg-color: rgba(255, 255, 255, 0.842);
 
         display: grid;
         place-items: end;  
+        background-size: cover;
 
         .cardbg {
             //position: relative;

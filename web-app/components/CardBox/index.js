@@ -10,8 +10,6 @@ import { useState } from 'react'
 import { Grow ,Link } from '@mui/material';
 
 
-
-
 function CardBox(props) {
 
     const {err , log , data } = useQuery(SCI1FRS)
@@ -33,12 +31,12 @@ function CardBox(props) {
                 <Grow in={true} 
                       timeout= {500+i*1000 }
                       >
-                    <div key={i} className={styles.card}> 
+                    <div key={i} className={styles.card} style={{backgroundImage:"url(http://localhost:4000/bgImages/"+ e.bg+")"}} > 
                         <div className={styles.cardbg} >
                             <div className={styles.cardName} >{e.title}</div>
                             {e.links.map ( (el , i) =>
                                 <div key={i} className={styles.cardLink} >
-                                    <Link href={el.link} underline="none">{el.name}</Link>
+                                    <Link href={'http://localhost:4000/documents/'+el.link} underline="none">{el.name}</Link>
                                 </div>)}
                         </div> 
                     </div>

@@ -8,7 +8,10 @@ export default function sci1fr() {
     
     <KoalaboHeader/>
 
-    <CardBox/>
+    <div style={{width:'100vw' , minHeight:"100vh"}}>
+      <CardBox/>
+    </div>
+    
     
     </>
   )

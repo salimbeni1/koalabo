@@ -42,10 +42,10 @@ const addTestCourse = async () => {
     links : [
               {
                   name : "quoi",
-                  link : "ecrire"
+                  link : "documents/report.pdf"
               }
           ],
-    bg : "pour tester"
+    bg : "bgImages/im1.png"
   });
   await testCourse.save()
 }
@@ -64,9 +64,24 @@ var schema = buildSchema(`
     bg: String
   } 
 
+  input CourseLinkI {
+    name: String!
+    link: String!
+  }
+
+  input CourseI  {
+    title: String!
+    links: [CourseLinkI]!
+    bg: String!
+  } 
+
   type Query {
     hello: String
     sci1frs: [Course]
+  }
+
+  type Mutation {
+    addNewCourse(className: String, course: CourseI): Boolean
   }
 `);
 
@@ -78,6 +93,14 @@ var root = {
 
   sci1frs: () => {
     return sci1fr.find();
+  },
+
+  addNewCourse : async ( {className , course} ) => {
+    if(className.match("^sci1fr$")){
+      await new sci1fr(course).save()
+      return true;
+    }
+    return false;
   }
 };
 
@@ -86,8 +109,11 @@ app.use('/graphql', graphqlHTTP({
   rootValue: root ,
   graphiql:  true ,
 }));
+
+app.use(express.static('public'));
+
 app.on('ready' , () => {
-  addTestCourse() ;
+  //addTestCourse() ;
   app.listen(4000);
 })
 console.log('Running a GraphQL API server at http://localhost:4000/graphql');
