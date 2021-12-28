@@ -7,6 +7,10 @@ import {useQuery , gql} from "@apollo/client"
 import { SCI1FRS }  from '../../GraphQL/Queries.js' 
 import { useState } from 'react'
 
+import { Grow ,Link } from '@mui/material';
+
+
+
 
 function CardBox(props) {
 
@@ -26,9 +30,19 @@ function CardBox(props) {
         <div className={styles.container}>
 
             {courses.map( (e , i) => 
-
-                <div key={i} > {e.title} </div>
-            
+                <Grow in={true} 
+                      timeout= {500+i*1000 }
+                      >
+                    <div key={i} className={styles.card}> 
+                        <div className={styles.cardbg} >
+                            <div className={styles.cardName} >{e.title}</div>
+                            {e.links.map ( (el , i) =>
+                                <div key={i} className={styles.cardLink} >
+                                    <Link href={el.link} underline="none">{el.name}</Link>
+                                </div>)}
+                        </div> 
+                    </div>
+                </Grow>
             )}
             
         </div>

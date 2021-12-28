@@ -1,11 +1,22 @@
 .container {
     position: absolute;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: grid;
+    place-items: center;
     border-radius: 20px;
     width: 30vw;
     height: 20vh;
+    .btmGroup{
+        display: none;
+    }
+}
+
+.container:hover {
+    h1{
+        display: none;
+    }
+    .btmGroup{
+        display: inline;
+    }
 }
 
 .extra {
