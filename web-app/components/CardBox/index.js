@@ -26,6 +26,8 @@ function CardBox( { nc , admin , passCourse , newCourse } ) {
             refetch()
             console.log(data)
             setCourses(data.sci1frs)
+            setSelectedCourse(sc => sc = undefined);
+            passCourse(undefined);
         }
     }, [data , nc])
 

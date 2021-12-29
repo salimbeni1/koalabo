@@ -3,8 +3,12 @@ import KoalaboHeader from '../components/KoalaboHeader'
 import CardBox from '../components/CardBox'
 import styles from '../styles/adminPage.module.scss'
 import { Select, InputLabel , FormControl , MenuItem ,createTheme , ThemeProvider } from '@mui/material'
-import {TextField , Button , Input} from '@mui/material'
+import {TextField , Button , IconButton , Input} from '@mui/material'
 import { useState } from 'react'
+
+import DeleteIcon from '@mui/icons-material/Delete';
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { useMutation } from '@apollo/client'
 import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE } from '../GraphQL/Mutations'
@@ -154,6 +158,22 @@ export default function AdminPage() {
                                value={link.link} 
                                label="link url" variant="filled" />
 
+
+                    
+                    <label htmlFor="icon-button-file">
+                      <Input id="icon-button-file" type="file" className={styles.iconButtonFile} />
+                      <IconButton color="primary" aria-label="upload document" size="large" component="span">
+                        <UploadFileIcon fontSize="inherit" />
+                      </IconButton>
+                    </label>
+                    
+                    
+                    <IconButton aria-label="delete" size="large"
+                      onClick={() => { setLinks(ls => ls.filter( (el,i) => i !==index )) }}
+                      >
+                      <DeleteIcon fontSize="inherit" />
+                    </IconButton>
+
                 </div>
             } ) }
             <div className={styles.addCourseLinkBTN} >
@@ -168,7 +188,15 @@ export default function AdminPage() {
             </div>
         </div>
 
+        <div className={styles.bginput}>
         <TextField id="filled-basic" value={courseBG} onChange={(e) => {setCourseBG(bg => bg=e.target.value)}} label="background image url" variant="filled" />
+        <label htmlFor="icon-button-file-bg">
+            <Input id="icon-button-file-bg" type="file" className={styles.iconButtonFile} />
+            <IconButton color="primary" aria-label="upload document" size="large" component="span">
+              <InsertPhotoIcon fontSize="inherit" />
+            </IconButton>
+        </label>
+        </div>
 
         <div className={styles.updateDeleteBTN}>
         { isNewCourse &&
