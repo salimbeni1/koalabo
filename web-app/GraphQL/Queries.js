@@ -5,6 +5,7 @@ export const SCI1FRS = gql`
     sci1frs{
       title
       bg
+      _id
       links{
         link
         name

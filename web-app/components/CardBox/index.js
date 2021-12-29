@@ -10,28 +10,58 @@ import { useState } from 'react'
 import { Grow ,Link } from '@mui/material';
 
 
-function CardBox(props) {
+function CardBox( { nc , admin , passCourse , newCourse } ) {
 
-    const {err , log , data } = useQuery(SCI1FRS)
+    const {err , log , data , refetch } = useQuery(SCI1FRS , {
+        fetchPolicy: "no-cache"
+      })
 
     const [courses, setCourses] = useState([])
 
+    const [selectedCourse, setSelectedCourse] = useState()
 
+    
     useEffect(() => {
-        //console.log(data)
-        if(data)
+        if(data){
+            refetch()
+            console.log(data)
             setCourses(data.sci1frs)
-    }, [data])
+        }
+    }, [data , nc])
 
 
-    return (
-        <div className={styles.container}>
+    return ( <>
+        <div className={styles.container} 
+
+            onClick={(e) => {
+                 if(admin && e.target === e.currentTarget){
+                     setSelectedCourse(sc => sc = undefined);
+                     passCourse(undefined);
+                     }}
+                     }>
+            
 
             {courses.map( (e , i) => 
                 <Grow in={true} 
                       timeout= {500+i*1000 }
                       >
-                    <div key={i} className={styles.card} style={{backgroundImage:"url(http://localhost:4000/bgImages/"+ e.bg+")"}} > 
+                    <div key={i} 
+                        onClick={() => {
+                            if(admin){
+                            if(selectedCourse === i){
+                                setSelectedCourse(sc => sc = undefined)
+                                passCourse(undefined);
+                            }
+                            else {
+                                setSelectedCourse(sc => sc = i)
+                                passCourse(e);
+                                }
+                            }
+                            }
+                        }
+                        className={styles.card+' '+
+                                   (admin?(selectedCourse===i?' '+styles.selectedCardClick:styles.selectedCard):'')} 
+                        style={{backgroundImage:"url(http://localhost:4000/bgImages/"+ e.bg+")"}} > 
                         <div className={styles.cardbg} >
                             <div className={styles.cardName} >{e.title}</div>
                             {e.links.map ( (el , i) =>
@@ -44,7 +74,7 @@ function CardBox(props) {
             )}
             
         </div>
-    )
+        </>)
 }
 
 CardBox.propTypes = {

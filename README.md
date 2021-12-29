@@ -7,8 +7,15 @@ nodejs npm yarn
 ```
 
 ## run
-
+run backend server
 ```
+cd backend
+docker-compose build
+codker-compose up
+```
+run frontend app
+```
+cd web-app
 yarn dev
 ```
 
@@ -35,6 +42,21 @@ backend/server/.env
 ```
 KOALABODB_NAME=<>
 KOALABODB_PWD=<>
+```
+
+backend/database/init.js
+
+```
+db = db.getSiblingDB('koalabodb');
+
+db.createUser({
+    user: < KOALABODB_NAME > ,
+    pwd: < KOALABODB_PWD > ,
+    roles: [{
+        role: 'readWrite',
+        db: 'koalabodb',
+    }],
+});
 ```
 
 ## TODO

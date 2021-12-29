@@ -62,6 +62,7 @@ var schema = buildSchema(`
     title: String
     links: [CourseLink]
     bg: String
+    _id: String
   } 
 
   input CourseLinkI {
@@ -82,6 +83,8 @@ var schema = buildSchema(`
 
   type Mutation {
     addNewCourse(className: String, course: CourseI): Boolean
+    delCourse(className: String, courseID: String): Boolean
+    updateCourse(className: String, courseID: String , course: CourseI): Boolean
   }
 `);
 
@@ -101,7 +104,23 @@ var root = {
       return true;
     }
     return false;
-  }
+  },
+
+  delCourse : async ({className , courseID}) => {
+    if(className.match("^sci1fr$")){
+      await sci1fr.deleteOne({ _id: courseID })
+      return true;
+    }
+    return false;
+  },
+
+  updateCourse : async ({className , courseID , course}) => {
+    if(className.match("^sci1fr$")){
+      await sci1fr.update({ _id: courseID } , {$set: course})
+      return true;
+    }
+    return false;
+  } 
 };
 
 app.use('/graphql', graphqlHTTP({

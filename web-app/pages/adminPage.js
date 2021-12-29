@@ -7,7 +7,8 @@ import {TextField , Button , Input} from '@mui/material'
 import { useState } from 'react'
 
 import { useMutation } from '@apollo/client'
-import { NEW_COURSE } from '../GraphQL/Mutations'
+import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE } from '../GraphQL/Mutations'
+import { SCI1FRS }  from '../GraphQL/Queries.js'
 
 
 const theme = createTheme({
@@ -35,15 +36,37 @@ export default function adminPage() {
     const [courseName, setCourseName] = useState("")
     const [links, setLinks] = useState([])
     const [courseBG, setCourseBG] = useState("")
-    const [addNewCourse, { data, loading, error }] = useMutation(NEW_COURSE);
+    const [selectedCourseID, setSelectedCourseID] = useState("")  
 
+    const [isNewCourse, setIsNewCourse] = useState(true)
+  
+    const [addNewCourse, RES_addNewCourse] = useMutation(NEW_COURSE);
+    const [delCourse, RES_delCourse] = useMutation(DEL_COURSE);
+    const [updateCourse, RES_updateCourse] = useMutation(UPDATE_COURSE);
 
     const [forceRenderCardBox, setForceRenderCardBox] = useState(0)
 
 
+    const updateSelectedCourse = () => {
+      const updatedCourse = {
+          title: courseName,
+          links : links,
+          bg: courseBG
+        };
+
+        updateCourse({ variables: { className: page , courseID: selectedCourseID , course: updatedCourse } });
+    }
+
+    const deleteSelectedCourse = () => {
+
+      delCourse({ variables: { className: page , courseID: selectedCourseID } });
+
+    }
+
+
     const insertNewCourse = () => {
 
-        console.log( {data, loading, error} )
+        //console.log( {data, loading, error} )
 
         const newCourse = {
             title: courseName,
@@ -54,6 +77,21 @@ export default function adminPage() {
         addNewCourse({ variables: { className: page , course: newCourse } });
     }
 
+    const getSelectedCourse = (c) => {
+      if(c){
+        setCourseName (n => n =  c.title)
+        setLinks       (l => l = c.links)
+        setCourseBG     (bg => bg = c.bg)
+        setSelectedCourseID( i => i = c._id)
+        setIsNewCourse    (b => b= false)
+      }else{
+        setCourseName ( n => n =  "")
+        setLinks      ( l => l = [] )
+        setCourseBG   (bg => bg = "")
+        setSelectedCourseID( i => i = "")
+        setIsNewCourse (b => b= true)
+      }
+    }
 
   return (
     <>
@@ -65,20 +103,21 @@ export default function adminPage() {
 
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
-            { page === "sci1fr" && <CardBox key={forceRenderCardBox}/>} 
+            { page === "sci1fr" && <CardBox nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
             { page === "no" && <>SELECT A PAGE</>} 
             { page === ""   && <>SELECT A PAGE</>} 
 
         </div>
         <div className={styles.sousDiv+' '+styles.form}>
             
-            EDIT FORM
+          <p>EDIT FORM</p>  
         <ThemeProvider theme={theme}>
         <FormControl fullWidth >
         
-        
+        <div className={styles.selectClassName}>
         <InputLabel id="test-select-label">Select a Page</InputLabel>
         <Select
+                fullWidth
                 labelId="test-select-label"
                 label="selected page"
                 value={page}
@@ -89,6 +128,7 @@ export default function adminPage() {
             <MenuItem value={'sci2fr'}>sci2fr</MenuItem>
             <MenuItem value={'sci3fr'}>sci3fr</MenuItem>
         </Select>
+        </div>
 
         {
             page.match("sci")  && <>
@@ -110,6 +150,7 @@ export default function adminPage() {
 
                 </div>
             } ) }
+            <div className={styles.addCourseLinkBTN} >
             <Button variant="outlined" onClick={() => {
                 if( links.length >= 5 ) alert("max of 5 links for course")
                 else
@@ -118,11 +159,27 @@ export default function adminPage() {
             }}>
                 ADD course link
             </Button>
+            </div>
         </div>
 
         <TextField id="filled-basic" value={courseBG} onChange={(e) => {setCourseBG(bg => bg=e.target.value)}} label="background image url" variant="filled" />
 
-        <Button variant="contained" onClick={() => {insertNewCourse(); setForceRenderCardBox(n=>n+1)}}>ADD NEW COURSE</Button>
+        <div className={styles.updateDeleteBTN}>
+        { isNewCourse &&
+        <Button variant="contained" onClick={() => {insertNewCourse(); setForceRenderCardBox(n=>n+1)}}>
+          ADD NEW COURSE
+        </Button>
+        }
+        { !isNewCourse &&
+        <>
+        <Button variant="contained" onClick={() => {updateSelectedCourse(); setForceRenderCardBox(n=>n+1)}}>
+          UPDATE COURSE
+        </Button>
+        <Button variant="contained" onClick={() => {deleteSelectedCourse(); setForceRenderCardBox(n=>n+1)}}>
+          DELETE COURSE
+        </Button>
+        </>
+        }</div>
         </>
         }
         
