@@ -28,7 +28,7 @@ const theme = createTheme({
   
   });
 
-export default function adminPage() {
+export default function AdminPage() {
 
 
     const [page, setPage] = useState("")
