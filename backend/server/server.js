@@ -115,8 +115,9 @@ var root = {
   },
 
   updateCourse : async ({className , courseID , course}) => {
+    console.log(`${className} + ${courseID}`);
     if(className.match("^sci1fr$")){
-      await sci1fr.update({ _id: courseID } , {$set: course})
+      await sci1fr.updateOne({ _id: courseID } , {$set: course})
       return true;
     }
     return false;

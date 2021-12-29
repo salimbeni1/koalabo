@@ -48,11 +48,17 @@ export default function AdminPage() {
 
 
     const updateSelectedCourse = () => {
+
+
+      console.log( page , selectedCourseID , updatedCourse )
+
       const updatedCourse = {
           title: courseName,
-          links : links,
+          links : links.map( (l) =>{ return {name:l.name , link:l.link} }),
           bg: courseBG
         };
+
+        console.log( page , selectedCourseID , updatedCourse )
 
         updateCourse({ variables: { className: page , courseID: selectedCourseID , course: updatedCourse } });
     }
@@ -154,7 +160,7 @@ export default function AdminPage() {
             <Button variant="outlined" onClick={() => {
                 if( links.length >= 5 ) alert("max of 5 links for course")
                 else
-                setLinks( l => [...l , { name: "" , link: "" } ])
+                setLinks( l => [...l , {name: "" , link: ""} ])
 
             }}>
                 ADD course link
@@ -166,16 +172,16 @@ export default function AdminPage() {
 
         <div className={styles.updateDeleteBTN}>
         { isNewCourse &&
-        <Button variant="contained" onClick={() => {insertNewCourse(); setForceRenderCardBox(n=>n+1)}}>
+        <Button variant="contained" onClick={() => {insertNewCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
           ADD NEW COURSE
         </Button>
         }
         { !isNewCourse &&
         <>
-        <Button variant="contained" onClick={() => {updateSelectedCourse(); setForceRenderCardBox(n=>n+1)}}>
+        <Button variant="contained" onClick={() => {updateSelectedCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
           UPDATE COURSE
         </Button>
-        <Button variant="contained" onClick={() => {deleteSelectedCourse(); setForceRenderCardBox(n=>n+1)}}>
+        <Button variant="contained" onClick={() => {deleteSelectedCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
           DELETE COURSE
         </Button>
         </>
