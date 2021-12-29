@@ -24,10 +24,12 @@ function CardBox( { nc , admin , passCourse , newCourse } ) {
     useEffect(() => {
         if(data){
             refetch()
-            console.log(data)
+            console.log(data.sci1frs)
             setCourses(data.sci1frs)
+            if(admin){
             setSelectedCourse(sc => sc = undefined);
             passCourse(undefined);
+            }
         }
     }, [data , nc])
 

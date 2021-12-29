@@ -5,7 +5,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN npm install express express-graphql graphql mongoose cors dotenv --save
+RUN npm install express express-graphql graphql mongoose cors dotenv graphql-upload --save
 
 
 EXPOSE 8080

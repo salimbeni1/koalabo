@@ -11,7 +11,7 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { useMutation } from '@apollo/client'
-import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE } from '../GraphQL/Mutations'
+import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE, UPLOAD_FILE , UPLOAD_FILE_} from '../GraphQL/Mutations'
 import { SCI1FRS }  from '../GraphQL/Queries.js'
 
 
@@ -47,8 +47,12 @@ export default function AdminPage() {
     const [addNewCourse, RES_addNewCourse] = useMutation(NEW_COURSE);
     const [delCourse, RES_delCourse] = useMutation(DEL_COURSE);
     const [updateCourse, RES_updateCourse] = useMutation(UPDATE_COURSE);
+    const [uploadFile, RES_uploadFile] = useMutation(UPLOAD_FILE_);
 
     const [forceRenderCardBox, setForceRenderCardBox] = useState(0)
+
+    const [fileBG, setFileBG] = useState()
+    const [fileDoc, setFileDoc] = useState()
 
 
     const updateSelectedCourse = () => {
@@ -71,6 +75,12 @@ export default function AdminPage() {
 
       delCourse({ variables: { className: page , courseID: selectedCourseID } });
 
+    }
+
+    const uploadImageBG = () => {
+      if(fileBG)
+        console.log(fileBG)
+        uploadFile({ variables: { sectionType: "images" , file: fileBG } })
     }
 
 
@@ -125,11 +135,12 @@ export default function AdminPage() {
         <FormControl fullWidth >
         
         <div className={styles.selectClassName}>
-        <InputLabel id="test-select-label">Select a Page</InputLabel>
+        {//< InputLabel id="test-select-label">Select a Page</InputLabel >
+        }
         <Select
                 fullWidth
-                labelId="test-select-label"
-                label="selected page"
+                //labelId="test-select-label"
+                //label="selected page"
                 value={page}
                 onChange={ (v) => {setPage( p => p=v.target.value);} }
         >
@@ -191,8 +202,13 @@ export default function AdminPage() {
         <div className={styles.bginput}>
         <TextField id="filled-basic" value={courseBG} onChange={(e) => {setCourseBG(bg => bg=e.target.value)}} label="background image url" variant="filled" />
         <label htmlFor="icon-button-file-bg">
-            <Input id="icon-button-file-bg" type="file" className={styles.iconButtonFile} />
-            <IconButton color="primary" aria-label="upload document" size="large" component="span">
+            <Input id="icon-button-file-bg" type="file" className={styles.iconButtonFile}
+                   onChange={
+                     ({target: {validity, files: [file]}}) =>{
+                    validity.valid && setFileBG(file) }}
+                    />
+            <IconButton color="primary" aria-label="upload document" size="large" component="span" 
+                        >
               <InsertPhotoIcon fontSize="inherit" />
             </IconButton>
         </label>
@@ -200,13 +216,21 @@ export default function AdminPage() {
 
         <div className={styles.updateDeleteBTN}>
         { isNewCourse &&
-        <Button variant="contained" onClick={() => {insertNewCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
+        <Button variant="contained" onClick={() => {
+          insertNewCourse();
+          uploadImageBG();
+          getSelectedCourse(undefined);
+          setForceRenderCardBox(n=>n+1)}}>
           ADD NEW COURSE
         </Button>
         }
         { !isNewCourse &&
         <>
-        <Button variant="contained" onClick={() => {updateSelectedCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
+        <Button variant="contained" onClick={() => {
+          updateSelectedCourse(); 
+          uploadImageBG();
+          getSelectedCourse(undefined); 
+          setForceRenderCardBox(n=>n+1)}}>
           UPDATE COURSE
         </Button>
         <Button variant="contained" onClick={() => {deleteSelectedCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>

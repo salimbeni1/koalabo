@@ -22,3 +22,11 @@ export const UPDATE_COURSE = gql`
         updateCourse( className: $className , courseID: $courseID , course: $course)
     }
 `;
+
+
+export const UPLOAD_FILE_ = gql`
+  mutation
+    UploadFile($sectionType: String, $file: FileUpload) {
+      uploadFile(sectionType: $sectionType, file: $file)
+    }
+`;

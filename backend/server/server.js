@@ -1,8 +1,11 @@
 var express = require('express');
 var { graphqlHTTP } = require('express-graphql');
 var { buildSchema } = require('graphql');
+const { graphqlUploadExpress  } = require("graphql-upload");
+const { GraphQLUpload } = require("graphql-upload");
 const mongoose = require('mongoose');
 const cors = require('cors')
+const fs = require('fs');
 
 require('dotenv').config()
 
@@ -53,6 +56,9 @@ const addTestCourse = async () => {
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
+
+  scalar FileUpload
+
   type CourseLink {
     name: String
     link: String
@@ -85,11 +91,16 @@ var schema = buildSchema(`
     addNewCourse(className: String, course: CourseI): Boolean
     delCourse(className: String, courseID: String): Boolean
     updateCourse(className: String, courseID: String , course: CourseI): Boolean
+
+    uploadFile(sectionType: String, file: FileUpload): String
   }
 `);
 
 // The root provides a resolver function for each API endpoint
 var root = {
+
+  FileUpload: GraphQLUpload ,
+
   hello: () => {
     return 'Hello world!';
   },
@@ -121,10 +132,26 @@ var root = {
       return true;
     }
     return false;
-  } 
+  }, 
+
+  uploadFile: async ({sectionType, file}) => {
+    console.log({sectionType, file});
+    const { filename, mimetype, createReadStream } = await file.file;
+
+    console.log(filename)
+    const stream = createReadStream();
+
+    console.log(stream)
+
+    const path = `${sectionType}/${filename}`
+
+    return path
+  }
 };
 
-app.use('/graphql', graphqlHTTP({
+app.use('/graphql',
+ graphqlUploadExpress({ maxFileSize: 10000000, maxFiles: 10 }),
+ graphqlHTTP({
   schema:  schema ,
   rootValue: root ,
   graphiql:  true ,

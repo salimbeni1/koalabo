@@ -7,8 +7,15 @@ import {
   gql
 } from "@apollo/client";
 
+import { createUploadLink } from 'apollo-upload-client';
+
+const httpLink = createUploadLink({
+  uri: 'http://localhost:4000/graphql'
+});
+
 const client = new ApolloClient({
-  uri: 'http://localhost:4000/graphql',
+  link: httpLink,
+  // uri: 'http://localhost:4000/graphql',
   cache: new InMemoryCache()
 });
 
