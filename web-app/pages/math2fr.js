@@ -2,14 +2,14 @@ import Image from 'next/image'
 import KoalaboHeader from '../components/KoalaboHeader'
 import CardBox from '../components/CardBox'
 
-export default function sci1fr() {
+export default function math2fr() {
   return (
     <>
     
     <KoalaboHeader/>
 
     <div style={{width:'100vw' , minHeight:"100vh"}}>
-      <CardBox nameClass="sci1fr"/>
+      <CardBox nameClass="math2fr"/>
     </div>
     
     

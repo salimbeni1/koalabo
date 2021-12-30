@@ -4,17 +4,18 @@ import styles from './CardBox.module.scss'
 import { useEffect } from 'react'
 
 import {useQuery , gql} from "@apollo/client"
-import { SCI1FRS }  from '../../GraphQL/Queries.js' 
+import { LIST_COURSE }  from '../../GraphQL/Queries.js' 
 import { useState } from 'react'
 
 import { Grow ,Link } from '@mui/material';
 
 
-function CardBox( { nc , admin , passCourse , newCourse } ) {
+function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
 
-    const {err , log , data , refetch } = useQuery(SCI1FRS , {
-        fetchPolicy: "no-cache"
-      })
+    const {err , log , data , refetch } = useQuery(LIST_COURSE , {
+        fetchPolicy: "no-cache",
+        variables: { className: nameClass },
+      } )
 
     const [courses, setCourses] = useState([])
 
@@ -24,8 +25,8 @@ function CardBox( { nc , admin , passCourse , newCourse } ) {
     useEffect(() => {
         if(data){
             refetch()
-            console.log(data.sci1frs)
-            setCourses(data.sci1frs)
+            console.log(data.listCourses)
+            setCourses(data.listCourses)
             if(admin){
             setSelectedCourse(sc => sc = undefined);
             passCourse(undefined);

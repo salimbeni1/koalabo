@@ -62,9 +62,9 @@ export default function Home() {
           <div className={styles.math +' '+styles.container} >
           <h1>MATH</h1>
           <ButtonGroup className={styles.btmGroup} variant="text" aria-label="text button group">
-            <Button>1FR</Button>
-            <Button>2FR</Button>
-            <Button>3FR</Button>
+            <Button href="math1fr">1FR</Button>
+            <Button href="math2fr">2FR</Button>
+            <Button href="math3fr">3FR</Button>
           </ButtonGroup>
           </div>
 
@@ -72,8 +72,8 @@ export default function Home() {
           <h1>SCIENCE</h1>
           <ButtonGroup className={styles.btmGroup} variant="text" aria-label="text button group">
             <Button href="sci1fr">1FR</Button>
-            <Button>2FR</Button>
-            <Button>3FR</Button>
+            <Button href="sci2fr">2FR</Button>
+            <Button href="sci3fr">3FR</Button>
           </ButtonGroup>
           </div>
 

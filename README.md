@@ -64,3 +64,5 @@ db.createUser({
 handle all .env files
 
 especially the backend/database/init.js user creation
+
+make db data persistent as well as public server folder files (keep data after container rebuild)

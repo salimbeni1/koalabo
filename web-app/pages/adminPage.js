@@ -12,7 +12,7 @@ import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
 import { useMutation } from '@apollo/client'
 import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE, UPLOAD_FILE , UPLOAD_FILE_} from '../GraphQL/Mutations'
-import { SCI1FRS }  from '../GraphQL/Queries.js'
+
 
 
 const theme = createTheme({
@@ -52,7 +52,7 @@ export default function AdminPage() {
     const [forceRenderCardBox, setForceRenderCardBox] = useState(0)
 
     const [fileBG, setFileBG] = useState()
-    const [fileDoc, setFileDoc] = useState()
+    const [fileDoc, setFileDoc] = useState([])
 
 
     const updateSelectedCourse = () => {
@@ -78,9 +78,17 @@ export default function AdminPage() {
     }
 
     const uploadImageBG = () => {
-      if(fileBG)
+      if(fileBG){
         console.log(fileBG)
-        uploadFile({ variables: { sectionType: "images" , file: fileBG } })
+        uploadFile({ variables: { sectionType: "bgImages" , file: fileBG } })
+      }
+    }
+
+    const uploadDOC = () => {
+      fileDoc.forEach( f => {
+        console.log(f)
+          uploadFile({ variables: { sectionType: "documents" , file: f } })
+      })
     }
 
 
@@ -123,7 +131,7 @@ export default function AdminPage() {
 
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
-            { page === "sci1fr" && <CardBox nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
+            { page.match("sci|math") && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
             { page === "no" && <>SELECT A PAGE</>} 
             { page === ""   && <>SELECT A PAGE</>} 
 
@@ -145,14 +153,17 @@ export default function AdminPage() {
                 onChange={ (v) => {setPage( p => p=v.target.value);} }
         >
             <MenuItem value={"no"}>...</MenuItem>
-            <MenuItem value={'sci1fr'}>sci1fr</MenuItem>
-            <MenuItem value={'sci2fr'}>sci2fr</MenuItem>
-            <MenuItem value={'sci3fr'}>sci3fr</MenuItem>
+            <MenuItem value={'sci1fr'} > sci1fr  </MenuItem>
+            <MenuItem value={'sci2fr'} > sci2fr  </MenuItem>
+            <MenuItem value={'sci3fr'} > sci3fr  </MenuItem>
+            <MenuItem value={'math1fr'}> math1fr </MenuItem>
+            <MenuItem value={'math2fr'}> math2fr </MenuItem>
+            <MenuItem value={'math3fr'}> math3fr </MenuItem>
         </Select>
         </div>
 
         {
-            page.match("sci")  && <>
+            page.match("sci|math")  && <>
         <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="course name" variant="filled" />
 
         <div className={styles.linksContainer}>
@@ -170,9 +181,12 @@ export default function AdminPage() {
                                label="link url" variant="filled" />
 
 
-                    
-                    <label htmlFor="icon-button-file">
-                      <Input id="icon-button-file" type="file" className={styles.iconButtonFile} />
+                    <label htmlFor={"icon-button-file-"+index}>
+                      <Input id={"icon-button-file-"+index} type="file" className={styles.iconButtonFile}
+                              onChange={
+                                ({target: {validity, files: [file]}}) =>{
+                              setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:file.name}:el } ))
+                              validity.valid &&  setFileDoc( f => [...f, file ]) }} />
                       <IconButton color="primary" aria-label="upload document" size="large" component="span">
                         <UploadFileIcon fontSize="inherit" />
                       </IconButton>
@@ -205,6 +219,7 @@ export default function AdminPage() {
             <Input id="icon-button-file-bg" type="file" className={styles.iconButtonFile}
                    onChange={
                      ({target: {validity, files: [file]}}) =>{
+                    setCourseBG(bg => bg = `${file.name}`);
                     validity.valid && setFileBG(file) }}
                     />
             <IconButton color="primary" aria-label="upload document" size="large" component="span" 
@@ -219,6 +234,7 @@ export default function AdminPage() {
         <Button variant="contained" onClick={() => {
           insertNewCourse();
           uploadImageBG();
+          uploadDOC();
           getSelectedCourse(undefined);
           setForceRenderCardBox(n=>n+1)}}>
           ADD NEW COURSE
@@ -229,6 +245,7 @@ export default function AdminPage() {
         <Button variant="contained" onClick={() => {
           updateSelectedCourse(); 
           uploadImageBG();
+          uploadDOC();
           getSelectedCourse(undefined); 
           setForceRenderCardBox(n=>n+1)}}>
           UPDATE COURSE

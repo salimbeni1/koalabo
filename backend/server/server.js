@@ -36,8 +36,17 @@ const courseSchema = new mongoose.Schema( {
   bg : String
 } );
 
-const sci1fr = mongoose.model("sci1fr" , courseSchema)
 
+
+const sci1fr = mongoose.model("sci1fr" , courseSchema)
+const Kcollections = {
+  "sci1fr" : sci1fr,
+  "sci2fr" : mongoose.model("sci2fr" , courseSchema),
+  "sci3fr" : mongoose.model("sci3fr" , courseSchema),
+  "math1fr" : mongoose.model("math1fr" , courseSchema),
+  "math2fr" : mongoose.model("math2fr" , courseSchema),
+  "math3fr" : mongoose.model("math3fr" , courseSchema),
+}
 
 const addTestCourse = async () => { 
   const testCourse = new sci1fr({
@@ -62,6 +71,7 @@ var schema = buildSchema(`
   type CourseLink {
     name: String
     link: String
+    _id: String
   }
 
   type Course  {
@@ -85,6 +95,7 @@ var schema = buildSchema(`
   type Query {
     hello: String
     sci1frs: [Course]
+    listCourses(className: String): [Course]
   }
 
   type Mutation {
@@ -109,17 +120,21 @@ var root = {
     return sci1fr.find();
   },
 
+  listCourses: ({className}) => {
+    return Kcollections[className].find()
+  },
+
   addNewCourse : async ( {className , course} ) => {
-    if(className.match("^sci1fr$")){
-      await new sci1fr(course).save()
+    if(className.match("sci|math")){
+      await new Kcollections[className](course).save()
       return true;
     }
     return false;
   },
 
   delCourse : async ({className , courseID}) => {
-    if(className.match("^sci1fr$")){
-      await sci1fr.deleteOne({ _id: courseID })
+    if(className.match("sci|math")){
+      await Kcollections[className].deleteOne({ _id: courseID })
       return true;
     }
     return false;
@@ -127,8 +142,8 @@ var root = {
 
   updateCourse : async ({className , courseID , course}) => {
     console.log(`${className} + ${courseID}`);
-    if(className.match("^sci1fr$")){
-      await sci1fr.updateOne({ _id: courseID } , {$set: course})
+    if(className.match("sci|math")){
+      await Kcollections[className].updateOne({ _id: courseID } , {$set: course})
       return true;
     }
     return false;
@@ -141,9 +156,12 @@ var root = {
     console.log(filename)
     const stream = createReadStream();
 
+    const path = `${sectionType}/${filename}`
+    const ws = fs.createWriteStream(`./public/${path}`)
+    stream.pipe(ws)
+
     console.log(stream)
 
-    const path = `${sectionType}/${filename}`
 
     return path
   }
