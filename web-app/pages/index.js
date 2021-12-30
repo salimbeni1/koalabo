@@ -23,14 +23,15 @@ const theme = createTheme({
     },
   },
 
+  /*
   typography: {
     button: {
-      fontSize: '7vh',
+      fontSize: "100%",
       fontWeight: 1000,
       lineHeight: 2.21,
       letterSpacing: '0.01em',
     },
-  },
+  },*/
 
 });
 
@@ -50,31 +51,36 @@ export default function Home() {
           <KoalaboBG/>
 
           <ThemeProvider theme={theme}>
+
+          <div className={styles.contcontainer}>
           
           <div className={styles.extra +' '+styles.container } >
           <h1>EXTRA</h1> 
-          <ButtonGroup className={styles.btmGroup} variant="text" aria-label="text button group">
-            <Button>test</Button>
-            <Button>jeux</Button>
-          </ButtonGroup>
+          
+            <div className={styles.buttongroup}>
+              <Button>test</Button>
+              <Button>jeux</Button>
+            </div>
           </div>
 
           <div className={styles.math +' '+styles.container} >
           <h1>MATH</h1>
-          <ButtonGroup className={styles.btmGroup} variant="text" aria-label="text button group">
+          <div className={styles.buttongroup}>
             <Button href="math1fr">1FR</Button>
             <Button href="math2fr">2FR</Button>
             <Button href="math3fr">3FR</Button>
-          </ButtonGroup>
+            </div>
           </div>
 
           <div className={styles.science +' '+styles.container} >
           <h1>SCIENCE</h1>
-          <ButtonGroup className={styles.btmGroup} variant="text" aria-label="text button group">
+          <div className={styles.buttongroup}>
             <Button href="sci1fr">1FR</Button>
             <Button href="sci2fr">2FR</Button>
             <Button href="sci3fr">3FR</Button>
-          </ButtonGroup>
+            </div>
+          </div>
+
           </div>
 
           </ThemeProvider>
