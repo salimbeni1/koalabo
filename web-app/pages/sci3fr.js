@@ -1,6 +1,9 @@
 import Image from 'next/image'
 import KoalaboHeader from '../components/KoalaboHeader'
 import CardBox from '../components/CardBox'
+import BGimage2format from '../components/BGimage2format'
+import styles from '../styles/classPage.module.scss'
+
 
 export default function sci3fr() {
   return (
@@ -8,10 +11,12 @@ export default function sci3fr() {
     
     <KoalaboHeader/>
 
-    <div style={{width:'100vw' , minHeight:"100vh"}}>
+    <BGimage2format imw="/images/rousseau_2-min.jpg" imh="/images/rousseau_1-min.jpg" />
+
+    <div className={styles.container}>
       <CardBox nameClass="sci3fr"/>
     </div>
-    
+        
     
     </>
   )
