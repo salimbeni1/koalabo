@@ -24,13 +24,18 @@ $tree-layer : 10;
 $koala-layer : 15;
 $cloud-layer : 13;
 
+$front-hill-layer : 3;
+$sea-layer : 2;
+$back-hill-layer: 1;
+
 
 .tree {
-    height: 100vh;
+    height: 110vh;
     width: 100%;
     z-index: $tree-layer;
 
-    left: 40vw
+    left: 40vw;
+    top: -5vh
 }
 
 .koala {
@@ -61,21 +66,21 @@ $cloud-layer : 13;
 }
 
 .plant_1 {
-    height: 55vh;
+    height: 45vh;
     width: 100%;
 
-    bottom: 0;
-    left: 0;
+    bottom: -10vh;
+    left: 18vw;
 
     z-index: $plant-layer;
 }
 
 .plant_2 {
-    height: 35vh;
+    height: 30vh;
     width: 100%;
 
-    bottom: 0;
-    left: 40vw;
+    bottom: -10vh;
+    left: 44vw;
 
     z-index: $plant-layer;
 }
@@ -84,9 +89,92 @@ $cloud-layer : 13;
     height: 30vh;
     width: 100%;
 
-    bottom: 0;
-    left: 90vw;
+    bottom: -3vh;
+    left: 35vw;
 
     z-index: $plant-layer;
 }
 
+.manyPlant_3 {
+    height: 30vh;
+    width: 100%;
+
+    bottom: -3vh;
+    left: -1vw;
+
+    z-index: $plant-layer;
+}
+
+.plant_4 {
+    height: 40vh;
+    width: 100%;
+
+    bottom: -5vh;
+    left: 0vw;
+
+    z-index: $plant-layer;
+}
+
+.plant_5 {
+    height: 120vh;
+    width: 100%;
+
+    bottom: -10vh;
+    left: -20vw;
+
+    z-index: $plant-layer;
+}
+
+.feuille_1 {
+    height: 40vh;
+    width: 100%;
+
+    top : -12vh;
+    right: -60vw;
+
+    z-index: $plant-layer;
+
+}
+
+.feuille_2 {
+    height: 60vh;
+    width: 100%;
+
+    top: -10vh;
+    left: -10vw;
+
+    z-index: $plant-layer;
+
+}
+
+.sea {
+    height: 80vh;
+    width: 100%;
+
+    bottom: -40vh;
+    left: 30vw;
+
+    z-index: $sea-layer;
+}
+
+.montagne_1 {
+    height: 110vh;
+    width: 100%;
+
+    bottom: -10vh;
+    left: -10vw;
+
+    z-index: $front-hill-layer;
+
+}
+
+.montagne_2 {
+    height: 60vh;
+    width: 100%;
+
+    bottom: 18vh;
+    left: 22vw;
+
+    z-index: $back-hill-layer;
+
+}
