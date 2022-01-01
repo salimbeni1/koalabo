@@ -32,11 +32,13 @@ function BGimage2format( { imw , imh } ) {
         }
     }
 
+
     return (
         <>
             <div className={styles.container}>
                 <Image src={ selectImage() } 
-                    placeholder="empty"
+                    placeholder="blur"
+                    blurDataURL={ selectImage() }
                     layout="fill" objectFit="cover"
                     className={styles.imagebg}
                     />
