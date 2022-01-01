@@ -15,14 +15,17 @@
     }
 }
 
-.container:hover {
-    h1{
-        display: none;
-    }
-    .buttongroup{
-        display: inline;
+@media (hover: hover) and (pointer: fine) {
+    .container:hover {
+        h1{
+            display: none;
+        }
+        .buttongroup{
+            display: inline;
+        }  
     }
 }
+
 
 .extra {
     background-color: yellow;
@@ -58,19 +61,6 @@
 
 // TABLET SCREEN
 @media screen and (max-width: 925px) {
-    
-    /*
-    .container {
-        min-width: 320px;
-        background-color: red;
-    }
-    .buttongroup {
-        display: flex;
-        justify-content: space-around;
-        a , button{
-            font-size: 45px;
-        }
-    }*/
 
 
     .contcontainer{
@@ -98,15 +88,6 @@
         }
     }
 
-    .container:hover {
-        h1{
-            display: inline;
-        }
-        .buttongroup{
-            display: inline;
-        }
-    }
-
     .buttongroup {
         a , button{
             font-size: 40px;
@@ -121,7 +102,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: space-around;
+        //justify-content: space-around;
         width: 100vw;
         height: 100vh;
     }
@@ -148,4 +129,15 @@
         }
     }
     
+}
+
+@media (pointer: coarse) {
+    .container {
+        h1{
+            display: inline;
+        }
+        .buttongroup{
+            display: inline;
+        }  
+    }
 }
