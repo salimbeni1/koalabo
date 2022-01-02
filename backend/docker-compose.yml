@@ -2,6 +2,7 @@ version: "3.9"
 
 services:
   server-qgl:
+    restart: always
     build: ./server/.
     ports:
       - "4000:4000"
@@ -11,6 +12,7 @@ services:
       - ./server/public:/usr/src/app/public
 
   mongodb:
+    restart: always
     image: mongo
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MDB_ADMIN_NAME}
