@@ -10,7 +10,7 @@ import {
 import { createUploadLink } from 'apollo-upload-client';
 
 const httpLink = createUploadLink({
-  uri: 'http://localhost:4000/graphql'
+  uri: 'http://192.168.1.105:4000/graphql'
 });
 
 const client = new ApolloClient({

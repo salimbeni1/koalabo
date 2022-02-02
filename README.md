@@ -19,6 +19,32 @@ cd web-app
 yarn dev
 ```
 
+## systemd for backend 
+in : /etc/systemd/system/koalabo.service
+```
+[Unit]
+Description="koalabo service with docker compose"
+Requires=docker.service
+After=docker.service
+
+[Service]
+Type=oneshot
+User=ubuntu
+RemainAfterExit=true
+WorkingDirectory=/home/ubuntu/koalabo/backend/
+ExecStart=/bin/bash script.sh
+
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```
+systemctl start koalabo
+```
+
+
+
 ## config files
 
 backend/database/.env
