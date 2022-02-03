@@ -67,12 +67,15 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                         }
                         className={styles.card+' '+
                                    (admin?(selectedCourse===i?' '+styles.selectedCardClick:styles.selectedCard):'')} 
-                        style={{backgroundImage:"url(http://localhost:4000/bgImages/"+ e.bg+")"}} > 
+                        style={{backgroundImage:"url(http://192.168.1.105:4000/bgImages/"+ e.bg+")"}} > 
                         <div className={styles.cardbg} >
                             <div className={styles.cardName} >{e.title}</div>
                             {e.links.map ( (el , i) =>
                                 <div key={i} className={styles.cardLink} >
-                                    <Link href={'http://localhost:4000/documents/'+el.link} underline="none">{el.name}</Link>
+                                    <Link href={
+                                        el.link.match("http")?el.link:
+                                        'http://192.168.1.105:4000/documents/'+el.link
+                                        } underline="none">{el.name}</Link>
                                 </div>)}
                         </div> 
                     </div>

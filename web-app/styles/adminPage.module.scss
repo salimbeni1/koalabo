@@ -8,7 +8,8 @@
 
 .sousDiv{
     display: grid;
-    place-items: center;
+    //place-items: center;
+    
     border: 15px solid black;
     overflow-y: scroll;
     scroll-behavior: smooth;
@@ -20,6 +21,11 @@
 .display{
     background-color: rgb(205, 50, 50);
     min-width: 50%;
+
+    .displaySelect{
+        display: grid;
+        place-items: center;
+    }
 }
 
 
@@ -32,6 +38,7 @@
     background-color: rgb(50, 112, 205);
     min-width: 50%;
     padding: 100px;
+    place-items: center;
 
     p{
         padding-bottom: 20px;

@@ -55,10 +55,10 @@ export default function Home() {
           <div className={styles.contcontainer}>
           
           <div className={styles.extra +' '+styles.container } >
-          <h1>EXTRA</h1> 
+          <h1> KOAlabo</h1> 
           
             <div className={styles.buttongroup}>
-              <Button>test</Button>
+              <Button>News</Button>
               <Button>jeux</Button>
             </div>
           </div>

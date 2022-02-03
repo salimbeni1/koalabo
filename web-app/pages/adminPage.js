@@ -132,8 +132,8 @@ export default function AdminPage() {
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
             { page.match("sci|math") && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
-            { page === "no" && <>SELECT A PAGE</>} 
-            { page === ""   && <>SELECT A PAGE</>} 
+            { page === "no" && <div className={styles.displaySelect}>SELECT A PAGE</div>} 
+            { page === ""   && <div className={styles.displaySelect}>SELECT A PAGE</div>} 
 
         </div>
         <div className={styles.sousDiv+' '+styles.form}>
