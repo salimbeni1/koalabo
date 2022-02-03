@@ -10,7 +10,7 @@ import {
 import { createUploadLink } from 'apollo-upload-client';
 
 const httpLink = createUploadLink({
-  uri: 'http://gaione-server.one/koalabo/graphql'
+  uri: 'https://gaione-server.one/koalabo/graphql'
 });
 
 const client = new ApolloClient({

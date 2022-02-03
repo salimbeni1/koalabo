@@ -67,14 +67,14 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                         }
                         className={styles.card+' '+
                                    (admin?(selectedCourse===i?' '+styles.selectedCardClick:styles.selectedCard):'')} 
-                        style={{backgroundImage:"url(http://gaione-server.one/koalabo/bgImages/"+ e.bg+")"}} > 
+                        style={{backgroundImage:"url(https://gaione-server.one/koalabo/bgImages/"+ e.bg+")"}} > 
                         <div className={styles.cardbg} >
                             <div className={styles.cardName} >{e.title}</div>
                             {e.links.map ( (el , i) =>
                                 <div key={i} className={styles.cardLink} >
                                     <Link href={
                                         el.link.match("http")?el.link:
-                                        'http://gaione-server.one/koalabo/documents/'+el.link
+                                        'https://gaione-server.one/koalabo/documents/'+el.link
                                         } underline="none">{el.name}</Link>
                                 </div>)}
                         </div> 
