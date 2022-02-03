@@ -85,9 +85,15 @@ export default function AdminPage() {
     }
 
     const uploadDOC = () => {
+      console.log("uploadDocc");
       fileDoc.forEach( f => {
-        console.log(f)
+        console.log("uploadDoc",f)
+        try{
           uploadFile({ variables: { sectionType: "documents" , file: f } })
+        }
+        catch(e){
+          console.log( "ERROR UPLOADfile" , e);
+        }
       })
     }
 
