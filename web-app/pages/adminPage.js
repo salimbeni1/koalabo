@@ -138,13 +138,13 @@ export default function AdminPage() {
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
             { page.match("sci|math") && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
-            { page === "no" && <div className={styles.displaySelect}>SELECT A PAGE</div>} 
-            { page === ""   && <div className={styles.displaySelect}>SELECT A PAGE</div>} 
+            { page === "no" && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
+            { page === ""   && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
 
         </div>
         <div className={styles.sousDiv+' '+styles.form}>
             
-          <p>EDIT FORM</p>  
+          <p>FORMULAIRE POUR EDITEUR</p>  
         <ThemeProvider theme={theme}>
         <FormControl fullWidth >
         
@@ -165,12 +165,20 @@ export default function AdminPage() {
             <MenuItem value={'math1fr'}> math1fr </MenuItem>
             <MenuItem value={'math2fr'}> math2fr </MenuItem>
             <MenuItem value={'math3fr'}> math3fr </MenuItem>
+
+            <MenuItem value={'journal'}> journal </MenuItem>
         </Select>
         </div>
 
         {
+           page.match("journal") && <>
+            pas encore implemente
+           </>
+        }
+
+        {
             page.match("sci|math")  && <>
-        <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="course name" variant="filled" />
+        <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="titre du cour" variant="filled" />
 
         <div className={styles.linksContainer}>
             { links.map( (link , index) => {
@@ -179,12 +187,12 @@ export default function AdminPage() {
                     <TextField id={"link-name-"+index}
                                onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:n.target.value,link:el.link}:el } )) } } 
                                value={link.name}
-                               label="link name" variant="filled" />
+                               label="titre lien" variant="filled" />
 
                     <TextField id={"link-url-"+index}
                                onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:n.target.value}:el } )) } } 
                                value={link.link} 
-                               label="link url" variant="filled" />
+                               label="url du lien" variant="filled" />
 
 
                     <label htmlFor={"icon-button-file-"+index}>
@@ -209,18 +217,18 @@ export default function AdminPage() {
             } ) }
             <div className={styles.addCourseLinkBTN} >
             <Button variant="outlined" onClick={() => {
-                if( links.length >= 5 ) alert("max of 5 links for course")
+                if( links.length >= 5 ) alert("max de 5 liens :/")
                 else
                 setLinks( l => [...l , {name: "" , link: ""} ])
 
             }}>
-                ADD course link
+                AJOUTE lien
             </Button>
             </div>
         </div>
 
         <div className={styles.bginput}>
-        <TextField id="filled-basic" value={courseBG} onChange={(e) => {setCourseBG(bg => bg=e.target.value)}} label="background image url" variant="filled" />
+        <TextField id="filled-basic" value={courseBG} onChange={(e) => {setCourseBG(bg => bg=e.target.value)}} label="image de fond" variant="filled" />
         <label htmlFor="icon-button-file-bg">
             <Input id="icon-button-file-bg" type="file" className={styles.iconButtonFile}
                    onChange={
@@ -243,7 +251,7 @@ export default function AdminPage() {
           uploadDOC();
           getSelectedCourse(undefined);
           setForceRenderCardBox(n=>n+1)}}>
-          ADD NEW COURSE
+          AJOUTE UN COUR
         </Button>
         }
         { !isNewCourse &&
@@ -254,10 +262,10 @@ export default function AdminPage() {
           uploadDOC();
           getSelectedCourse(undefined); 
           setForceRenderCardBox(n=>n+1)}}>
-          UPDATE COURSE
+          MET A JOUR
         </Button>
         <Button variant="contained" onClick={() => {deleteSelectedCourse(); getSelectedCourse(undefined); setForceRenderCardBox(n=>n+1)}}>
-          DELETE COURSE
+          SUPPRIME
         </Button>
         </>
         }</div>

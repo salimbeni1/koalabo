@@ -58,8 +58,14 @@ export default function Home() {
           <h1> KOAlabo</h1> 
           
             <div className={styles.buttongroup}>
-              <Button>News</Button>
-              <Button>jeux</Button>
+
+              
+              <Button>KOAlabo</Button>
+              
+              {
+                //<Button href="journal">Journal</Button>
+                //<Button>jeux</Button>
+              }
             </div>
           </div>
 
