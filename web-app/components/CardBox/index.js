@@ -48,7 +48,7 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
 
             {courses.map( (e , i) => 
                 <Grow in={true} 
-                      timeout= {500+i*1000 }
+                      timeout= {500+i*100 }
                       key={i} 
                       >
                     <div key={i} 

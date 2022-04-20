@@ -22,17 +22,13 @@ const theme = createTheme({
       main: '#3e2723',
     },
   },
-
-  /*
+  
   typography: {
-    button: {
-      fontSize: "100%",
-      fontWeight: 1000,
-      lineHeight: 2.21,
-      letterSpacing: '0.01em',
-    },
-  },*/
-
+    fontFamily: [
+      'Quicksand',
+      "sans-serif"
+    ].join(",")
+  }
 });
 
 
