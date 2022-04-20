@@ -178,3 +178,15 @@ $back-hill-layer: 1;
     z-index: $back-hill-layer;
 
 }
+
+
+@media (pointer: coarse) {
+
+
+    .container {
+        background: linear-gradient(-0deg, #138a31 60%, hsl(186, 100%, 50%) 40%);
+    }
+
+
+
+}
