@@ -26,9 +26,11 @@ mongoose.connect('mongodb://'+process.env.KOALABODB_NAME+':'+process.env.KOALABO
 
 
 const courseSchema = new mongoose.Schema( {
+  state: String,
   title : String,
   links : [
             {
+              state: String,
               name : String,
               link : String
             }
@@ -48,20 +50,6 @@ const Kcollections = {
   "math3fr" : mongoose.model("math3fr" , courseSchema),
 }
 
-const addTestCourse = async () => { 
-  const testCourse = new sci1fr({
-    title : "je sais pas",
-    links : [
-              {
-                  name : "quoi",
-                  link : "documents/report.pdf"
-              }
-          ],
-    bg : "bgImages/im1.png"
-  });
-  await testCourse.save()
-}
-
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -69,12 +57,14 @@ var schema = buildSchema(`
   scalar FileUpload
 
   type CourseLink {
+    state: String
     name: String
     link: String
     _id: String
   }
 
   type Course  {
+    state: String
     title: String
     links: [CourseLink]
     bg: String
@@ -82,11 +72,13 @@ var schema = buildSchema(`
   } 
 
   input CourseLinkI {
+    state: String
     name: String!
     link: String!
   }
 
   input CourseI  {
+    state: String
     title: String!
     links: [CourseLinkI]!
     bg: String!
@@ -125,6 +117,7 @@ var root = {
   },
 
   addNewCourse : async ( {className , course} ) => {
+    console.log(`${className} + ${1}`);
     if(className.match("sci|math")){
       await new Kcollections[className](course).save()
       return true;

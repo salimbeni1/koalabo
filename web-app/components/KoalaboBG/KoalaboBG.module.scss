@@ -1,10 +1,8 @@
 .container {
     position:absolute;
     overflow: hidden;
-
     width: 100vw;
     height: 100vh;
-
     top: 0;
     right: 0;
 
@@ -23,7 +21,6 @@ $plant-layer : 100;
 $tree-layer : 10;
 $koala-layer : 15;
 $cloud-layer : 13;
-
 $front-hill-layer : 3;
 $sea-layer : 2;
 $back-hill-layer: 1;
@@ -33,7 +30,6 @@ $back-hill-layer: 1;
     height: 110vh;
     width: 100%;
     z-index: $tree-layer;
-
     left: 40vw;
     top: -5vh
 }
@@ -41,9 +37,7 @@ $back-hill-layer: 1;
 .koala {
     height: 30vh;
     width: 100%;
-
     z-index: $koala-layer;
-
     left: 40vw;
     top: 30vh;
 }
@@ -52,7 +46,6 @@ $back-hill-layer: 1;
     height: 10vh;
     width: 100%;
     z-index: $cloud-layer;
-
     left: 39vw;
     top: 35vh;
 }
@@ -61,132 +54,100 @@ $back-hill-layer: 1;
     height: 30vh;
     width: 100%;
     z-index: $cloud-layer;
-
     left: 50vw;
 }
 
 .plant_1 {
     height: 45vh;
     width: 100%;
-
     bottom: -10vh;
     left: 18vw;
-
     z-index: $plant-layer;
 }
 
 .plant_2 {
     height: 30vh;
     width: 100%;
-
     bottom: -10vh;
     left: 44vw;
-
     z-index: $plant-layer;
 }
 
 .plant_3 {
     height: 30vh;
     width: 100%;
-
     bottom: -3vh;
     left: 35vw;
-
     z-index: $plant-layer;
 }
 
 .manyPlant_3 {
     height: 30vh;
     width: 100%;
-
     bottom: -3vh;
     left: -1vw;
-
     z-index: $plant-layer;
 }
 
 .plant_4 {
     height: 40vh;
     width: 100%;
-
     bottom: -5vh;
     left: 0vw;
-
     z-index: $plant-layer;
 }
 
 .plant_5 {
     height: 120vh;
     width: 100%;
-
     bottom: -10vh;
     left: -20vw;
-
     z-index: $plant-layer;
 }
 
 .feuille_1 {
     height: 40vh;
     width: 100%;
-
     top : -12vh;
     right: -60vw;
-
     z-index: $plant-layer;
-
 }
 
 .feuille_2 {
     height: 60vh;
     width: 100%;
-
     top: -10vh;
     left: -10vw;
-
     z-index: $plant-layer;
-
 }
 
 .sea {
     height: 80vh;
     width: 100%;
-
     bottom: -35vh;
     right: -10vw;
-
     z-index: $sea-layer;
 }
 
 .montagne_1 {
     height: 110vh;
     width: 100%;
-
     bottom: -10vh;
     left: -10vw;
-
     z-index: $front-hill-layer;
-
 }
 
 .montagne_2 {
     height: 60vh;
     width: 100%;
-
     bottom: 18vh;
     left: 22vw;
-
     z-index: $back-hill-layer;
-
 }
 
 
 @media (pointer: coarse) {
-
-
     .container {
         background: linear-gradient(-0deg, #138a31 60%, hsl(186, 100%, 50%) 40%);
     }
-
-
-
 }

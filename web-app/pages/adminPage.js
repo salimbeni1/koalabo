@@ -2,7 +2,7 @@ import Image from 'next/image'
 import KoalaboHeader from '../components/KoalaboHeader'
 import CardBox from '../components/CardBox'
 import styles from '../styles/adminPage.module.scss'
-import { Select, InputLabel , FormControl , MenuItem ,createTheme , ThemeProvider } from '@mui/material'
+import { Select, InputLabel , FormControl , FormGroup ,Switch ,FormControlLabel ,  MenuItem ,createTheme , ThemeProvider } from '@mui/material'
 import {TextField , Button , IconButton , Input} from '@mui/material'
 import { useState } from 'react'
 
@@ -38,6 +38,7 @@ export default function AdminPage() {
     const [page, setPage] = useState("")
 
     const [courseName, setCourseName] = useState("")
+    const [courseState, setCourseSate] = useState("")
     const [links, setLinks] = useState([])
     const [courseBG, setCourseBG] = useState("")
     const [selectedCourseID, setSelectedCourseID] = useState("")  
@@ -56,25 +57,21 @@ export default function AdminPage() {
 
 
     const updateSelectedCourse = () => {
-
-
       console.log( page , selectedCourseID , updatedCourse )
 
       const updatedCourse = {
           title: courseName,
-          links : links.map( (l) =>{ return {name:l.name , link:l.link} }),
+          state: courseState,
+          links : links.map( (l) =>{ return {name:l.name , link:l.link , state:l.state} }),
           bg: courseBG
         };
 
         console.log( page , selectedCourseID , updatedCourse )
-
-        updateCourse({ variables: { className: page , courseID: selectedCourseID , course: updatedCourse } });
+        updateCourse({ variables: { className: page , courseID: selectedCourseID , course: updatedCourse } }).catch(err => console.log(err));
     }
 
     const deleteSelectedCourse = () => {
-
       delCourse({ variables: { className: page , courseID: selectedCourseID } });
-
     }
 
     const uploadImageBG = () => {
@@ -99,27 +96,26 @@ export default function AdminPage() {
 
 
     const insertNewCourse = () => {
-
-        //console.log( {data, loading, error} )
-
         const newCourse = {
+            state: courseState,
             title: courseName,
             links : links,
             bg: courseBG
         };
-
         addNewCourse({ variables: { className: page , course: newCourse } });
     }
 
     const getSelectedCourse = (c) => {
       if(c){
         setCourseName (n => n =  c.title)
+        setCourseSate(n => n = c.state)
         setLinks       (l => l = c.links)
         setCourseBG     (bg => bg = c.bg)
         setSelectedCourseID( i => i = c._id)
         setIsNewCourse    (b => b= false)
       }else{
         setCourseName ( n => n =  "")
+        setCourseSate(n => n = "")
         setLinks      ( l => l = [] )
         setCourseBG   (bg => bg = "")
         setSelectedCourseID( i => i = "")
@@ -179,18 +175,19 @@ export default function AdminPage() {
         {
             page.match("sci|math")  && <>
         <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="titre du cour" variant="filled" />
+        <FormControlLabel control={<Switch checked={courseState!=="Hidden"} onChange={(e) => {setCourseSate( n => n=e.target.checked?"":"Hidden" )}} />} label={courseState==="Hidden"?"invisible":"visible"} />
 
         <div className={styles.linksContainer}>
             { links.map( (link , index) => {
                 return <div className={styles.linkC} key={index} > 
                     
                     <TextField id={"link-name-"+index}
-                               onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:n.target.value,link:el.link}:el } )) } } 
+                               onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:n.target.value,link:el.link, state:el.state}:el } )) } } 
                                value={link.name}
                                label="titre lien" variant="filled" />
 
                     <TextField id={"link-url-"+index}
-                               onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:n.target.value}:el } )) } } 
+                               onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:n.target.value,state:el.state}:el } )) } } 
                                value={link.link} 
                                label="url du lien" variant="filled" />
 
@@ -199,7 +196,7 @@ export default function AdminPage() {
                       <Input id={"icon-button-file-"+index} type="file" className={styles.iconButtonFile}
                               onChange={
                                 ({target: {validity, files: [file]}}) =>{
-                              setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:file.name}:el } ))
+                              setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:file.name,state:el.state}:el } ))
                               validity.valid &&  setFileDoc( f => [...f, file ]) }} />
                       <IconButton color="primary" aria-label="upload document" size="large" component="span">
                         <UploadFileIcon fontSize="inherit" />
@@ -213,13 +210,19 @@ export default function AdminPage() {
                       <DeleteIcon fontSize="inherit" />
                     </IconButton>
 
+                    
+                    <FormControlLabel control={<Switch 
+                      checked={link.state !== "Hidden"}
+                      onChange={(n) => {setLinks( ls => ls.map( (el , idx) => { return idx===index?{name:el.name,link:el.link, state:n.target.checked?"":"Hidden"}:el } )) } }  />}
+                    label={link.state==="Hidden"?"invisible":"visible"} />
+                  
                 </div>
             } ) }
             <div className={styles.addCourseLinkBTN} >
             <Button variant="outlined" onClick={() => {
                 if( links.length >= 5 ) alert("max de 5 liens :/")
                 else
-                setLinks( l => [...l , {name: "" , link: ""} ])
+                setLinks( l => [...l , {name: "" , link: "", state:""} ])
 
             }}>
                 AJOUTE lien
@@ -271,8 +274,6 @@ export default function AdminPage() {
         }</div>
         </>
         }
-        
-
 
         </FormControl>
         </ThemeProvider>

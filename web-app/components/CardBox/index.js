@@ -46,7 +46,7 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                      }>
             
 
-            {courses.map( (e , i) => 
+            {courses.filter(e => (e.state !== "Hidden" || admin) ).map( (e , i) => 
                 <Grow in={true} 
                       timeout= {500+i*100 }
                       key={i} 
@@ -67,11 +67,12 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                         }
                         className={styles.card+' '+
                                    (admin?(selectedCourse===i?' '+styles.selectedCardClick:styles.selectedCard):'')} 
-                        style={{backgroundImage:"url(https://gaione-server.one/koalabo/bgImages/"+ e.bg+")"}} > 
+                        style={{backgroundImage:"url(https://gaione-server.one/koalabo/bgImages/"+ e.bg+")",opacity:admin?(e.state === "Hidden"?"50%":"100%"):"100%"}} > 
                         <div className={styles.cardbg} >
                             <div className={styles.cardName} >{e.title}</div>
-                            {e.links.map ( (el , i) =>
-                                <div key={i} className={styles.cardLink} >
+                            {e.links.filter(e => (e.state !== "Hidden" || admin) ).map ( (el , i) =>
+                                <div key={i} className={styles.cardLink}
+                                style={{opacity:admin?(el.state === "Hidden"?"40%":"100%"):"100%"}} >
                                     <Link href={
                                         el.link.match("http")?el.link:
                                         'https://gaione-server.one/koalabo/documents/'+el.link
