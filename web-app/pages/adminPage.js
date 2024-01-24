@@ -4,7 +4,7 @@ import CardBox from '../components/CardBox'
 import styles from '../styles/adminPage.module.scss'
 import { Select, InputLabel , FormControl , FormGroup ,Switch ,FormControlLabel ,  MenuItem ,createTheme , ThemeProvider } from '@mui/material'
 import {TextField , Button , IconButton , Input} from '@mui/material'
-import { useState } from 'react'
+import { useState , useEffect } from 'react'
 
 import DeleteIcon from '@mui/icons-material/Delete';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
@@ -35,7 +35,7 @@ const theme = createTheme({
 export default function AdminPage() {
 
 
-    const [page, setPage] = useState("")
+    const [page, setPage] = useState("no")
 
     const [courseName, setCourseName] = useState("")
     const [courseState, setCourseSate] = useState("")
@@ -44,6 +44,8 @@ export default function AdminPage() {
     const [selectedCourseID, setSelectedCourseID] = useState("")  
 
     const [isNewCourse, setIsNewCourse] = useState(true)
+
+    const [newPageName, setNewPageName] = useState("")
   
     const [addNewCourse, RES_addNewCourse] = useMutation(NEW_COURSE);
     const [delCourse, RES_delCourse] = useMutation(DEL_COURSE);
@@ -55,6 +57,14 @@ export default function AdminPage() {
     const [fileBG, setFileBG] = useState()
     const [fileDoc, setFileDoc] = useState([])
 
+    const [collections, setCollections] = useState([]);
+
+    useEffect(() => {
+      fetch('http://localhost:4000/kcollections')
+        .then(response => response.json())
+        .then(data => setCollections(data))
+        .catch(error => console.error('Error fetching collections:', error));
+    }, []);
 
     const updateSelectedCourse = () => {
       console.log( page , selectedCourseID , updatedCourse )
@@ -94,7 +104,6 @@ export default function AdminPage() {
       })
     }
 
-
     const insertNewCourse = () => {
         const newCourse = {
             state: courseState,
@@ -133,7 +142,7 @@ export default function AdminPage() {
 
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
-            { page.match("sci|math") && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
+            { (page !== "no" && page === "" && page === "new" )  && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
             { page === "no" && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
             { page === ""   && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
 
@@ -147,33 +156,50 @@ export default function AdminPage() {
         <div className={styles.selectClassName}>
         {//< InputLabel id="test-select-label">Select a Page</InputLabel >
         }
-        <Select
+        {
+          collections.length > 0 ? <Select
                 fullWidth
                 //labelId="test-select-label"
                 //label="selected page"
                 value={page}
                 onChange={ (v) => {setPage( p => p=v.target.value);} }
-        >
+            >
             <MenuItem value={"no"}>...</MenuItem>
-            <MenuItem value={'sci1fr'} > sci1fr  </MenuItem>
-            <MenuItem value={'sci2fr'} > sci2fr  </MenuItem>
-            <MenuItem value={'sci3fr'} > sci3fr  </MenuItem>
-            <MenuItem value={'math1fr'}> math1fr </MenuItem>
-            <MenuItem value={'math2fr'}> math2fr </MenuItem>
-            <MenuItem value={'math3fr'}> math3fr </MenuItem>
-
-            <MenuItem value={'journal'}> journal </MenuItem>
-        </Select>
+            {
+              collections.map((c, index) => (
+                  <MenuItem key={"collections-"+index} value={c} >
+                    {c}  </MenuItem>)
+            )
+            }
+            <MenuItem value={"new"}>Nouvelle Classe</MenuItem>
+          </Select> : <></>
+        }
+        
         </div>
 
-        {
-           page.match("journal") && <>
-            pas encore implemente
-           </>
+        { 
+          page === "new" ? <>
+          
+            <TextField id={"link-name---"}
+                onChange={(e) => {setNewPageName( n => n=e.target.value )}}
+                value={newPageName}
+                label="Nom de la classe" variant="filled" />
+
+            <Button color="primary" size="large" component="span"
+              onClick={e => {
+                if ( newPageName !== "" ) {
+                  setPage(newPageName)
+                }
+              }}
+            >
+                        Creer la nouvelle classe
+            </Button>
+          
+          </>:<></>
         }
 
-        {
-            page.match("sci|math")  && <>
+        { (page !== "new" && page !== "no")   && <>
+        <h2>{page}</h2>
         <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="titre du cour" variant="filled" />
         <FormControlLabel control={<Switch checked={courseState!=="Hidden"} onChange={(e) => {setCourseSate( n => n=e.target.checked?"":"Hidden" )}} />} label={courseState==="Hidden"?"invisible":"visible"} />
 
@@ -218,6 +244,8 @@ export default function AdminPage() {
                   
                 </div>
             } ) }
+
+
             <div className={styles.addCourseLinkBTN} >
             <Button variant="outlined" onClick={() => {
                 if( links.length >= 5 ) alert("max de 5 liens :/")

@@ -11,7 +11,7 @@ run backend server
 ```
 cd backend
 docker-compose build
-codker-compose up
+docker-compose up
 ```
 run frontend app
 ```

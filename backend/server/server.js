@@ -9,23 +9,27 @@ const fs = require('fs');
 
 require('dotenv').config()
 
+const MONGO_DB_URL = "mongodb"
+// const MONGO_DB_URL = "localhost"
+// const MONGO_DB_URL = "0.0.0.0"
 
 console.log("WELCOME TO THE GRAPHQL MONGODB SERVER")
 
 var app = express();
 app.use(cors())
 
-mongoose.connect('mongodb://'+process.env.KOALABODB_NAME+':'+process.env.KOALABODB_PWD+'@mongodb:27017/koalabodb' , 
-(e) => {
-  if (e) console.log("db error : " + e);
-  else {
-    console.log("db successfull connection"); 
-    app.emit('ready'); 
-  }
-} );
-
+async function connectToMongoDB() {
+  let mongo_url = 'mongodb://'+process.env.KOALABODB_NAME+':'+process.env.KOALABODB_PWD+'@'+MONGO_DB_URL+':27017/koalabodb'
+  await mongoose.connect(mongo_url).then(
+    (  ) => { 
+      console.log("db successfull connection"); 
+      app.emit('ready')}
+  ).catch( e => console.log("db error "+mongo_url+" : " + e) )
+}
+connectToMongoDB();
 
 const courseSchema = new mongoose.Schema( {
+  index: Number,
   state: String,
   title : String,
   links : [
@@ -39,10 +43,8 @@ const courseSchema = new mongoose.Schema( {
 } );
 
 
-
-const sci1fr = mongoose.model("sci1fr" , courseSchema)
 const Kcollections = {
-  "sci1fr" : sci1fr,
+  "sci1fr" : mongoose.model("sci1fr" , courseSchema),
   "sci2fr" : mongoose.model("sci2fr" , courseSchema),
   "sci3fr" : mongoose.model("sci3fr" , courseSchema),
   "math1fr" : mongoose.model("math1fr" , courseSchema),
@@ -64,6 +66,7 @@ var schema = buildSchema(`
   }
 
   type Course  {
+    index: Int
     state: String
     title: String
     links: [CourseLink]
@@ -78,6 +81,7 @@ var schema = buildSchema(`
   }
 
   input CourseI  {
+    index: Int
     state: String
     title: String!
     links: [CourseLinkI]!
@@ -86,7 +90,6 @@ var schema = buildSchema(`
 
   type Query {
     hello: String
-    sci1frs: [Course]
     listCourses(className: String): [Course]
   }
 
@@ -108,25 +111,21 @@ var root = {
     return 'Hello world!';
   },
 
-  sci1frs: () => {
-    return sci1fr.find();
-  },
-
   listCourses: ({className}) => {
     return Kcollections[className].find()
   },
 
   addNewCourse : async ( {className , course} ) => {
     console.log(`${className} + ${1}`);
-    if(className.match("sci|math")){
-      await new Kcollections[className](course).save()
-      return true;
+    if (!Kcollections[className]) {
+      Kcollections[className] = mongoose.model(className, courseSchema);
     }
-    return false;
+    await new Kcollections[className](course).save()
+    return true;
   },
 
   delCourse : async ({className , courseID}) => {
-    if(className.match("sci|math")){
+    if(Kcollections[className]){
       await Kcollections[className].deleteOne({ _id: courseID })
       return true;
     }
@@ -135,12 +134,12 @@ var root = {
 
   updateCourse : async ({className , courseID , course}) => {
     console.log(`${className} + ${courseID}`);
-    if(className.match("sci|math")){
+    if(Kcollections[className]){
       await Kcollections[className].updateOne({ _id: courseID } , {$set: course})
       return true;
     }
     return false;
-  }, 
+  },
 
   uploadFile: async ({sectionType, file}) => {
     console.log({sectionType, file});
@@ -154,8 +153,6 @@ var root = {
     stream.pipe(ws)
 
     console.log(stream)
-
-
     return path
   }
 };
@@ -167,6 +164,11 @@ app.use('/graphql',
   rootValue: root ,
   graphiql:  true ,
 }));
+
+app.get('/kcollections', (req, res) => {
+  const collectionNames = Object.keys(Kcollections);
+  res.json(collectionNames);
+});
 
 app.use(express.static('public'));
 

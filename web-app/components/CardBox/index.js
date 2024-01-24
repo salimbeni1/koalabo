@@ -28,8 +28,8 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
             console.log(data.listCourses)
             setCourses(data.listCourses)
             if(admin){
-            setSelectedCourse(sc => sc = undefined);
-            passCourse(undefined);
+                setSelectedCourse(sc => sc = undefined);
+                passCourse(undefined);
             }
         }
     }, [data , nc])

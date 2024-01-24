@@ -16,7 +16,6 @@ export default function math1fr() {
       <CardBox nameClass="math1fr"/>
     </div>
         
-    
     </>
   )
 }

@@ -13,7 +13,7 @@ services:
 
   mongodb:
     restart: always
-    image: mongo
+    image: mongo:latest
     environment:
       - MONGO_INITDB_ROOT_USERNAME=${MDB_ADMIN_NAME}
       - MONGO_INITDB_ROOT_PASSWORD=${MDB_ADMIN_PWD}
