@@ -45,8 +45,7 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                      }}
                      }>
             
-
-            {courses.filter(e => (e.state !== "Hidden" || admin) ).map( (e , i) => 
+            {courses.sort((a,b) => {return a.index - b.index}).filter(e => (e.state !== "Hidden" || admin) ).map( (e , i) => 
                 <Grow in={true} 
                       timeout= {500+i*100 }
                       key={i} 

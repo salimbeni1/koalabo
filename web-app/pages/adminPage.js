@@ -1,9 +1,7 @@
-import Image from 'next/image'
-import KoalaboHeader from '../components/KoalaboHeader'
 import CardBox from '../components/CardBox'
 import styles from '../styles/adminPage.module.scss'
 import { Select, InputLabel , FormControl , FormGroup ,Switch ,FormControlLabel ,  MenuItem ,createTheme , ThemeProvider } from '@mui/material'
-import {TextField , Button , IconButton , Input} from '@mui/material'
+import {TextField , Button , NumberInput, IconButton , Input} from '@mui/material'
 import { useState , useEffect } from 'react'
 
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -38,6 +36,7 @@ export default function AdminPage() {
     const [page, setPage] = useState("no")
 
     const [courseName, setCourseName] = useState("")
+    const [courseIndex, setCourseIndex] = useState(0)
     const [courseState, setCourseSate] = useState("")
     const [links, setLinks] = useState([])
     const [courseBG, setCourseBG] = useState("")
@@ -73,6 +72,7 @@ export default function AdminPage() {
       const updatedCourse = {
           title: courseName,
           state: courseState,
+          index: Number(courseIndex),
           links : links.map( (l) =>{ return {name:l.name , link:l.link , state:l.state} }),
           bg: courseBG
         };
@@ -106,12 +106,15 @@ export default function AdminPage() {
     }
 
     const insertNewCourse = () => {
+        console.log("yolo")
         const newCourse = {
             state: courseState,
             title: courseName,
+            index: courseIndex,
             links : links,
             bg: courseBG
         };
+        console.log(newCourse)
         addNewCourse({ variables: { className: page , course: newCourse } });
     }
 
@@ -123,6 +126,7 @@ export default function AdminPage() {
         setCourseBG     (bg => bg = c.bg)
         setSelectedCourseID( i => i = c._id)
         setIsNewCourse    (b => b= false)
+        setCourseIndex ( i => i = c.index )
       }else{
         setCourseName ( n => n =  "")
         setCourseSate(n => n = "")
@@ -130,6 +134,7 @@ export default function AdminPage() {
         setCourseBG   (bg => bg = "")
         setSelectedCourseID( i => i = "")
         setIsNewCourse (b => b= true)
+        setCourseIndex ( i => i = 0)
       }
     }
 
@@ -143,9 +148,10 @@ export default function AdminPage() {
 
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
-            { (page !== "no" && page === "" && page === "new" )  && <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />} 
-            { page === "no" && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
-            { page === ""   && <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div>} 
+           
+            { (page !== "no" && page !== "" && page !== "new" )  ? <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} /> :<>skdksd</>} 
+            { page === "no" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
+            { page === "" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
 
         </div>
         <div className={styles.sousDiv+' '+styles.form}>
@@ -201,9 +207,16 @@ export default function AdminPage() {
 
         { (page !== "new" && page !== "no")   && <>
         <h2>{page}</h2>
-        <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} label="titre du cour" variant="filled" />
-        <FormControlLabel control={<Switch checked={courseState!=="Hidden"} onChange={(e) => {setCourseSate( n => n=e.target.checked?"":"Hidden" )}} />} label={courseState==="Hidden"?"invisible":"visible"} />
+        <TextField id="filled-basic" value={courseName} onChange={(e) => {setCourseName( n => n=e.target.value )}} 
+          label="titre du cour" 
+          variant="filled" />
 
+
+        <TextField id="filled-basic" type="number" value={courseIndex} onChange={(e) => {setCourseIndex( n => n=e.target.value )}} 
+          label="Index, Ordre sur la page" 
+          variant="filled" />
+
+        <FormControlLabel control={<Switch checked={courseState!=="Hidden"} onChange={(e) => {setCourseSate( n => n=e.target.checked?"":"Hidden" )}} />} label={courseState==="Hidden"?"invisible":"visible"} />
         <div className={styles.linksContainer}>
             { links.map( (link , index) => {
                 return <div className={styles.linkC} key={index} > 

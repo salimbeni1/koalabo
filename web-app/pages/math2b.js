@@ -10,8 +10,12 @@ export default function math1fr() {
     
     <KoalaboHeader/>
 
-    <BGimage2format imw="/images/rousseau_3-min.jpg" imh="/images/rousseau_1-min.jpg" />        
-    
+    <BGimage2format imw="/images/rousseau_3-min.jpg" imh="/images/rousseau_1-min.jpg" />
+
+    <div className={styles.container}>
+      <CardBox nameClass="math2b"/>
+    </div>
+        
     </>
   )
 }
