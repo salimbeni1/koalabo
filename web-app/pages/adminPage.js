@@ -149,7 +149,7 @@ export default function AdminPage() {
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
            
-            { (page !== "no" && page !== "" && page !== "new" )  ? <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} /> :<>skdksd</>} 
+            { (page !== "no" && page !== "" && page !== "new" )  ? <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} /> :<></>} 
             { page === "no" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
             { page === "" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
 
