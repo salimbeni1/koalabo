@@ -60,7 +60,8 @@ export default function AdminPage() {
     const [collections, setCollections] = useState([]);
 
     useEffect(() => {
-      fetch('http://localhost:4000/kcollections')
+      fetch('https://gaione-server.one/koalabo/kcollections')
+      //fetch('http://localhost:4000/kcollections')
         .then(response => response.json())
         .then(data => setCollections(data))
         .catch(error => console.error('Error fetching collections:', error));
