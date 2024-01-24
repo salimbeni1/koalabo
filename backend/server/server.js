@@ -6,6 +6,7 @@ const { GraphQLUpload } = require("graphql-upload");
 const mongoose = require('mongoose');
 const cors = require('cors')
 const fs = require('fs');
+const path = require('path');
 
 require('dotenv').config()
 
@@ -26,6 +27,7 @@ async function connectToMongoDB() {
       app.emit('ready')}
   ).catch( e => console.log("db error "+mongo_url+" : " + e) )
 }
+
 connectToMongoDB();
 
 const courseSchema = new mongoose.Schema( {
@@ -42,7 +44,6 @@ const courseSchema = new mongoose.Schema( {
   bg : String
 } );
 
-
 const Kcollections = {
   "sci1fr" : mongoose.model("sci1fr" , courseSchema),
   "sci2fr" : mongoose.model("sci2fr" , courseSchema),
@@ -51,7 +52,6 @@ const Kcollections = {
   "math2fr" : mongoose.model("math2fr" , courseSchema),
   "math3fr" : mongoose.model("math3fr" , courseSchema),
 }
-
 
 // Construct a schema, using GraphQL schema language
 var schema = buildSchema(`
@@ -112,6 +112,9 @@ var root = {
   },
 
   listCourses: ({className}) => {
+    if (!Kcollections[className]) {
+      Kcollections[className] = mongoose.model(className, courseSchema);
+    }
     return Kcollections[className].find()
   },
 
@@ -125,20 +128,20 @@ var root = {
   },
 
   delCourse : async ({className , courseID}) => {
-    if(Kcollections[className]){
-      await Kcollections[className].deleteOne({ _id: courseID })
-      return true;
+    if (!Kcollections[className]) {
+      Kcollections[className] = mongoose.model(className, courseSchema);
     }
-    return false;
+    await Kcollections[className].deleteOne({ _id: courseID })
+    return true;
   },
 
   updateCourse : async ({className , courseID , course}) => {
     console.log(`${className} + ${courseID}`);
-    if(Kcollections[className]){
-      await Kcollections[className].updateOne({ _id: courseID } , {$set: course})
-      return true;
+    if (!Kcollections[className]) {
+      Kcollections[className] = mongoose.model(className, courseSchema);
     }
-    return false;
+    await Kcollections[className].updateOne({ _id: courseID } , {$set: course})
+    return true;
   },
 
   uploadFile: async ({sectionType, file}) => {
@@ -168,6 +171,36 @@ app.use('/graphql',
 app.get('/kcollections', (req, res) => {
   const collectionNames = Object.keys(Kcollections);
   res.json(collectionNames);
+});
+
+
+function listFilesStructured(dir, baseDir = dir) {
+  const result = {};
+  const files = fs.readdirSync(dir);
+  files.forEach(file => {
+      const filePath = path.join(dir, file);
+      const relativePath = path.relative(baseDir, filePath);
+
+      if (fs.statSync(filePath).isDirectory()) {
+          result[file] = listFilesStructured(filePath, baseDir);
+      } else {
+          if (!result['files']) {
+              result['files'] = [];
+          }
+          result['files'].push(relativePath);
+      }
+  });
+  return result;
+}
+
+app.get('/downloadedfiles', (req, res) => {
+    const publicDir = path.join(__dirname, 'public');
+    try {
+        const fileListStructured = listFilesStructured(publicDir);
+        res.json(fileListStructured);
+    } catch (error) {
+        res.status(500).send('Error reading files');
+    }
 });
 
 app.use(express.static('public'));

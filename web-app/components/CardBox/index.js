@@ -53,15 +53,15 @@ function CardBox( { nameClass , nc , admin , passCourse , newCourse } ) {
                     <div key={i} 
                         onClick={() => {
                             if(admin){
-                            if(selectedCourse === i){
-                                setSelectedCourse(sc => sc = undefined)
-                                passCourse(undefined);
-                            }
-                            else {
-                                setSelectedCourse(sc => sc = i)
-                                passCourse(e);
+                                if(selectedCourse === i){
+                                    setSelectedCourse(sc => sc = undefined)
+                                    passCourse(undefined);
                                 }
-                            }
+                                else {
+                                    setSelectedCourse(sc => sc = i)
+                                    passCourse(e);
+                                    }
+                                }
                             }
                         }
                         className={styles.card+' '+

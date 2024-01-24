@@ -8,9 +8,8 @@
 
 .sousDiv{
     display: grid;
-    //place-items: center;
-    
-    border: 15px solid black;
+    //place-items: center; 
+    border: 2px solid black;
     overflow-y: scroll;
     scroll-behavior: smooth;
     scrollbar-width: none; /* For Firefox */
@@ -39,7 +38,6 @@
     min-width: 50%;
     padding: 100px;
     place-items: center;
-
     p{
         padding-bottom: 20px;
     }
@@ -49,8 +47,6 @@
 .linksContainer {
     //background-color: cadetblue;
     padding: 5px;
-
-
     .linkC{
         display: flex;
         flex-direction: row;

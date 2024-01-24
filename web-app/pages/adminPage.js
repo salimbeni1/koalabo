@@ -178,6 +178,8 @@ export default function AdminPage() {
                     {c}  </MenuItem>)
             )
             }
+            <MenuItem value={"koalabo"}>koalabo</MenuItem>
+            <MenuItem value={"math2b"}>math2b</MenuItem>
             <MenuItem value={"new"}>Nouvelle Classe</MenuItem>
           </Select> : <></>
         }
@@ -214,7 +216,7 @@ export default function AdminPage() {
 
         <TextField id="filled-basic" type="number" value={courseIndex} onChange={(e) => {setCourseIndex( n => n=e.target.value )}} 
           label="Index, Ordre sur la page" 
-          variant="filled" />
+          variant="filled" InputLabelProps={{ shrink: true }}  />
 
         <FormControlLabel control={<Switch checked={courseState!=="Hidden"} onChange={(e) => {setCourseSate( n => n=e.target.checked?"":"Hidden" )}} />} label={courseState==="Hidden"?"invisible":"visible"} />
         <div className={styles.linksContainer}>
