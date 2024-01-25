@@ -11,7 +11,7 @@
     // width: 30vw;
     width: fit-content;
     min-width: 30vw;
-    height: 20vh;
+    min-height: 20vh;
     overflow: hidden;
     .buttongroup{
         display: none;
@@ -100,7 +100,8 @@
             display: inline;
         }
         .buttongroup{
-            display: inline;
+            display: flex;
+            flex-direction: row;
         }  
     }
 
@@ -153,7 +154,8 @@
             display: inline;
         }
         .buttongroup{
-            display: inline;
+            display: flex;
+            flex-direction: row;
         }  
     }
 }

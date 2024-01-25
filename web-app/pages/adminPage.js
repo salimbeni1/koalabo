@@ -8,6 +8,8 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import InsertPhotoIcon from '@mui/icons-material/InsertPhoto';
 
+import LoopSharpIcon from '@mui/icons-material/LoopSharp';
+
 import { useMutation } from '@apollo/client'
 import { NEW_COURSE, UPDATE_COURSE , DEL_COURSE, UPLOAD_FILE , UPLOAD_FILE_} from '../GraphQL/Mutations'
 
@@ -52,6 +54,7 @@ export default function AdminPage() {
     const [uploadFile, RES_uploadFile] = useMutation(UPLOAD_FILE_);
 
     const [forceRenderCardBox, setForceRenderCardBox] = useState(0)
+
 
     const [fileBG, setFileBG] = useState()
     const [fileDoc, setFileDoc] = useState([])
@@ -148,8 +151,18 @@ export default function AdminPage() {
 
     <div className={styles.mainDiv}>
         <div className={styles.sousDiv+' '+styles.display}>
+
+
            
-            { (page !== "no" && page !== "" && page !== "new" )  ? <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} /> :<></>} 
+            { (page !== "no" && page !== "" && page !== "new" )  ? <div className={styles.left}>
+
+              <div className={styles.lefticon} onClick={ e => {
+                setForceRenderCardBox(n=>n+1)
+              }}> <LoopSharpIcon/> </div>
+
+              <CardBox nameClass={page} nc={forceRenderCardBox} admin passCourse={getSelectedCourse} />
+              
+              </div> :<></>} 
             { page === "no" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
             { page === "" ? <div className={styles.displaySelect}>SELECTIONNE UNE CLASSE</div> : <></>} 
 
@@ -178,8 +191,6 @@ export default function AdminPage() {
                     {c}  </MenuItem>)
             )
             }
-            <MenuItem value={"koalabo"}>koalabo</MenuItem>
-            <MenuItem value={"math2b"}>math2b</MenuItem>
             <MenuItem value={"new"}>Nouvelle Classe</MenuItem>
           </Select> : <></>
         }
