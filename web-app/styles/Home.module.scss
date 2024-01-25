@@ -8,8 +8,11 @@
     place-items: center;
     border-radius: 20px;
     border: 2px solid black;
-    width: 30vw;
+    // width: 30vw;
+    width: fit-content;
+    min-width: 30vw;
     height: 20vh;
+    overflow: hidden;
     .buttongroup{
         display: none;
     }
@@ -21,7 +24,8 @@
             display: none;
         }
         .buttongroup{
-            display: inline;
+            display: flex;
+            flex-direction: row;
         }  
     }
 }
@@ -31,18 +35,19 @@
     background-color: yellow;
     top: 20vh;
     left: 7vw;
+
 }
 
 .math{
     background-color: hotpink;
     top: 25vh;
-    left: 60vw;
+    left: 58vw;
 }
 
 .science {
     background-color: orange;
     top: 55vh;
-    left: 60vw;
+    left: 58vw;
 }
 
 .buttongroup {
