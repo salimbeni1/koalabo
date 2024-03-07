@@ -70,7 +70,6 @@ export default function Home() {
           <div className={styles.buttongroup}>
             <Button href="math1fr">1FR</Button>
             <Button href="math2fr">2FR</Button>
-            <Button href="math2b">2B</Button>
             <Button href="math3fr">3FR</Button>
             </div>
           </div>
